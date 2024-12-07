@@ -5,3 +5,6 @@ Castellano Bruno [0612708383]
 Grieco Giovanni [0612708209]  
 Giachetta Corradomaria [0612708054]  
 Di Carluccio Alessandro [612707283]
+
+# Documentazione del progetto
+La documentazione generata è disponibile qui: [Documentazione Doxygen](https://github.com/brunocast2003/Project-Work-Gruppo-8/blob/DoxygenB/Doxygen/index.html)
