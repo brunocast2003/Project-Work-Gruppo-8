@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.sen.gui.ContattoViewController">
+   <children>
+      <Label fx:id="lblNome" layoutX="30.0" layoutY="15.0" text="Nome: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfdNome" layoutX="78.0" layoutY="12.0" />
+      <Label fx:id="lblCognome" layoutX="30.0" layoutY="50.0" text="Cognome: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTelefono1" layoutX="30.0" layoutY="90.0" text="Numero di telefono 1: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTelefono2" layoutX="30.0" layoutY="125.0" text="Numero di telefono 2: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTelefono3" layoutX="30.0" layoutY="160.0" text="Numero di telefono 3: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmail1" layoutX="30.0" layoutY="210.0" text="Email 1: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmail2" layoutX="30.0" layoutY="245.0" text="Email 2: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmail3" layoutX="30.0" layoutY="280.0" text="Email 3: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfdCognome" layoutX="99.0" layoutY="47.0" />
+      <TextField fx:id="tfdTelefono1" layoutX="171.0" layoutY="90.0" />
+      <TextField fx:id="tfdTelefono2" layoutX="171.0" layoutY="125.0" />
+      <TextField fx:id="tfdTelefono3" layoutX="171.0" layoutY="160.0" />
+      <TextField fx:id="tfdEmail1" layoutX="84.0" layoutY="210.0" />
+      <TextField fx:id="tfdEmail2" layoutX="84.0" layoutY="245.0" />
+      <TextField fx:id="tfdEmail3" layoutX="84.0" layoutY="280.0" />
+      <Button fx:id="btnRimuoviContatto" layoutX="459.0" layoutY="350.0" mnemonicParsing="false" onAction="#rimuoviContatto" text="Rimuovi" />
+      <Button fx:id="btnSalva" layoutX="530.0" layoutY="350.0" mnemonicParsing="false" onAction="#salvaContatto" text="Salva" />
+      <Button fx:id="btnAnnulla" layoutX="30.0" layoutY="350.0" mnemonicParsing="false" onAction="#annulla" text="Annulla" />
+   </children>
+</AnchorPane>

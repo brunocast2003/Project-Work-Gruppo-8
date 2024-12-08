@@ -64,19 +64,6 @@ public class RubricaViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
-    /**
-     * @brief Gestisce l'aggiunta di un nuovo contatto.
-     * 
-     * Questo metodo è chiamato quando l'utente clicca sul bottone "Aggiungi Contatto".
-     * 
-     * @param event L'evento generato dal clic sul bottone.
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
-    @FXML
-    private void aggiungiContatto(ActionEvent event) {
-    }
 
     /**
      * @brief Carica una rubrica da file.
@@ -132,5 +119,9 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void switchContattoView(MouseEvent event) {
+    }
+
+    @FXML
+    private void switchContattoView(ActionEvent event) {
     }
 }

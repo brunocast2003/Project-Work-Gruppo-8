@@ -13,7 +13,7 @@
    <children>
       <TextField fx:id="barraRicerca" alignment="TOP_LEFT" layoutX="18.0" layoutY="14.0" prefHeight="25.0" prefWidth="500.0" promptText="Cerca un contatto..." />
       <ListView fx:id="listaContatti" layoutX="18.0" layoutY="49.0" onMouseClicked="#switchContattoView" prefHeight="306.0" prefWidth="565.0" />
-      <Button fx:id="btnAggiungiContatto" layoutX="470.0" layoutY="361.0" mnemonicParsing="false" onAction="#aggiungiContatto" text="Aggiungi contatto" />
+      <Button fx:id="btnAggiungiContatto" layoutX="470.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchContattoView" text="Aggiungi contatto" />
       <MenuBar layoutX="533.0" layoutY="14.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
