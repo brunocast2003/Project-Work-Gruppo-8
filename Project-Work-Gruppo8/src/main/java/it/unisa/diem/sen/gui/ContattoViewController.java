@@ -62,30 +62,88 @@ public class ContattoViewController implements Initializable {
     @FXML
     private Button btnAnnulla;
     
+    /**
+     * @brief Crea un oggetto di ContattoViewController
+     * 
+     * @param contatto il contatto da visualizzare
+     * @param rubrica la rubrica che contiene il contatto
+     * @param rubricaViewController il controller dell'interfaccia della rubrica
+     * 
+     * @post un'istanza della classe ContattoViewController è inizializzato
+     * 
+     * @see Contatto
+     * @see Rubrica
+     * @see RubricaViewController
+     */
     public ContattoViewController(Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
     
     }
     
     /**
-     * Initializes the controller class.
+     * @brief Inizializza il controller della vista.
+     * 
+     * Questo metodo è chiamato automaticamente durante il caricamento della vista FXML.
+     * 
+     * @param url L'URL utilizzato per risolvere percorsi relativi al file FXML.
+     * @param rb Il `ResourceBundle` per localizzare la vista.
+     * 
+     * @pre La vista FXML è stata caricata correttamente.
+     * @post Il controller è stato inizializzato.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    /**
+     * @brief Rimuove un contatto dalla rubrica.
+     * 
+     * @param event L'evento generato dalla selezione del bottone.
+     * 
+     * @pre Nessuna.
+     * @post Il contatto, se esiste, è rimosso dalla rubrica.
+     * 
+     * @see RubricaView
+     */
     @FXML
     private void rimuoviContatto(ActionEvent event) {
     }
 
+    /**
+     * @brief Aggiunge/modifica contatto e ritorna a RubricaView.
+     * 
+     * @param event L'evento generato dalla selezione del bottone.
+     * 
+     * @pre Nessuna.
+     * @post Il contatto è salvato in rubrica.
+     * 
+     * @see RubricaView
+     */
     @FXML
     private void salvaContatto(ActionEvent event) {
     }
 
+    /**
+     * @brief Annulla l'operazione e ritorna a RubricaView.
+     * @param event L'evento generato dalla selezione del bottone.
+     * 
+     * @pre Nessuna.
+     * @post Ritorno a RubricaView.
+     * 
+     * @see RubricaView
+     */
     @FXML
     private void annulla(ActionEvent event) {
     }
     
+    /**
+     * @brief Consente di passare all'interfaccia RubricaView
+     * 
+     * @pre Nessuna.
+     * @post Ritorno a RubricaView.
+     * 
+     * @see RubricaView
+     */
     public void switchRubricaView() {
     }
    

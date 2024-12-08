@@ -49,6 +49,7 @@ public class RubricaViewController implements Initializable {
     private MenuItem esci; ///< Opzione di menu per chiudere l'applicazione.
 
     private Rubrica rubrica;
+    
     /**
      * @brief Inizializza il controller della vista.
      * 
@@ -110,7 +111,7 @@ public class RubricaViewController implements Initializable {
     /**
      * @brief Cambia la vista per visualizzare i dettagli di un contatto.
      * 
-     * Questo metodo è chiamato quando l'utente clicca su un elemento della lista dei contatti.
+     * Questo metodo è chiamato quando l'utente clicca due volte su un elemento della lista dei contatti.
      * 
      * @param event L'evento generato dal clic su un contatto.
      * 
@@ -121,6 +122,16 @@ public class RubricaViewController implements Initializable {
     private void switchContattoView(MouseEvent event) {
     }
 
+    /**
+     * @brief Cambia la vista per visualizzare i dettagli di un contatto.
+     * 
+     * Questo metodo è chiamato quando l'utente clicca il bottone "Aggiungi contatto".
+     * 
+     * @param event L'evento generato dall'interazione col bottone "Aggiungi contatto".
+     * 
+     * @pre Nessuna.
+     * @post Nessuna.
+     */
     @FXML
     private void switchContattoView(ActionEvent event) {
     }
