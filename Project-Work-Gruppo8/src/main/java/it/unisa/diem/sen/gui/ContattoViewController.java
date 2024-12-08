@@ -18,8 +18,16 @@ import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
- * @author ggrie
+ * 
+* @author Castellano Bruno
+ * @author Grieco Giovanni
+ * @author Giachetta Corradomaria
+ * @author Di Carluccio Alesssandro
+ * 
+   * @see Contatto
+     * @see Rubrica
+     * @see RubricaViewController
+ * 
  */
 public class ContattoViewController implements Initializable {
 
@@ -63,6 +71,7 @@ public class ContattoViewController implements Initializable {
     private Button btnAnnulla;
     private Contatto contatto;
     private Rubrica rubrica;
+    private RubricaViewController rubricaViewController;
     
     /**
      * @brief Crea un oggetto di ContattoViewController
@@ -73,9 +82,6 @@ public class ContattoViewController implements Initializable {
      * 
      * @post un'istanza della classe ContattoViewController è inizializzato
      * 
-     * @see Contatto
-     * @see Rubrica
-     * @see RubricaViewController
      */
     public ContattoViewController(Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
     
