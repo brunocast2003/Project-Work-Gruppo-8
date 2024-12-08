@@ -5,11 +5,13 @@
  * 
  * Tale file permette di istanziare oggetti di tipo rubrica, essenziali per il progetto
  * 
- * @author Bruno Castellano
+ * @author Castellano Bruno
+ * @author Grieco Giovanni
+ * @author Giachetta Corradomaria
+ * @author Di Carluccio Alesssandro
  * 
  * @date December 02, 2024
  * 
- * @version 1.0
  * 
  */
 
@@ -21,8 +23,14 @@ import javafx.collections.ObservableList;
 /**
      * @brief La lista di contatti 
      * 
-     * Questa classe viene usata per ospitare tutti i contatti in una lista ordinata per cognome e nome.
-     *
+    * Questa classe permette di gestire una lista di contatti, offrendo funzionalità  
+ * per aggiungere, rimuovere, modificare e cercare contatti, oltre a caricare e salvare la rubrica.
+ * Implementa l'interfaccia `FileIO` per gestire l'importazione e l'esportazione da e verso file.
+ * 
+ * @tparam Contatto Il tipo di elemento gestito dalla rubrica.
+ * 
+ * @see FileIO
+
 */
 public class Rubrica<Contatto> implements FileIO{
     
@@ -33,9 +41,11 @@ public class Rubrica<Contatto> implements FileIO{
      * @brief Crea un oggetto di tipo rubrica
      * 
      * Questo metodo crea un oggetto Rubrica con un nome dato in input ed inizializza una lista di contatti
-     * 
+     * Inizializza una nuova rubrica vuota. 
      * @pre Rubrica inesistente
-     * @post La rubrica è stata generata correttamente
+     *
+     * @post Una nuova istanza di `Rubrica` è creata con una lista vuota di contatti.
+
      * 
      * 
     */
@@ -46,34 +56,86 @@ public class Rubrica<Contatto> implements FileIO{
     /**
      * @brief Aggiunge un contatto alla rubrica
      * Aggiunge un Contatto alla lista 
-     * @pre Nessuna
+     * 
+     * @pre contatto non nullo
+     * 
      * @post Contatto generato ed aggiunto alla rubrica correttamente
-     * j
-     * @param[in] nome Il nome da assegnare alla rubrica.
+     * 
+     *  @param contatto Il contatto da aggiungere alla rubrica.
     */
     public void aggiungiContatto(Contatto contatto){
     }
     
+    /**
+     * @brief Rimuove un contatto dalla rubrica.
+     * 
+     * @param contatto Il contatto da rimuovere dalla rubrica.
+     * 
+     * @pre contatto != null
+     * @post Il contatto specificato è rimosso dalla lista dei contatti, se esiste.
+     */
     public void rimuoviContatto(Contatto contatto){
     } 
     
+    /**
+     * @brief Modifica un contatto nella rubrica.
+     * 
+     * @param contatto Il contatto da modificare nella rubrica.
+     * 
+     * @pre contatto != null
+     * @post Il contatto specificato è aggiornato nella lista dei contatti.
+     */
     public void modificaContatto(Contatto contatto){
         
     }
     
+    /**
+     * @brief Cerca contatti nella rubrica.
+     * 
+     * @param cerca La stringa di ricerca da utilizzare.
+     * @return Una lista di contatti che corrispondono ai criteri di ricerca.
+     * 
+     * @pre cerca != null
+     * @post Restituisce una lista di contatti che soddisfano i criteri di ricerca.
+     */
     public List<Contatto> cercaContatto(String cerca) {
         return null;
     }
     
+    /**
+     * @brief Ordina la rubrica in base ai contatti.
+     * 
+     * Ordina i contatti in ordine alfabetico per cognome, e successivamente per nome.
+     * 
+     * @pre Nessuna
+     * @post I contatti nella rubrica sono ordinati.
+     */
     public void ordinaRubrica() {
         
     }
 
+    /**
+     * @brief Carica una rubrica da file.
+     * 
+     * @param nomefile Il nome del file da cui caricare la rubrica.
+     * @return Un'istanza di `Rubrica` caricata dal file.
+     * 
+     * @pre nomefile != null
+     * @post Restituisce una rubrica caricata con i contatti presenti nel file.
+     */
     @Override
     public Rubrica caricaRubrica(String nomefile) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * @brief Salva la rubrica su file.
+     * 
+     * @param nomefile Il nome del file in cui salvare la rubrica.
+     * 
+     * @pre nomefile != null
+     * @post La rubrica è salvata nel file specificato.
+     */
     @Override
     public void salvaRubrica(String nomefile) {
         throw new UnsupportedOperationException("Not supported yet.");
