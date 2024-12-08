@@ -15,8 +15,8 @@
 
 package it.unisa.diem.sen.api;
 
-import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
      * @brief La lista di contatti 
@@ -26,7 +26,7 @@ import java.util.List;
 */
 public class Rubrica<Contatto> implements FileIO{
     
-    private List<Contatto> contatti;    ///< La lista di contatti gestita dalla rubrica.
+    private ObservableList<Contatto> contatti;    ///< La lista di contatti gestita dalla rubrica.
     
     
     /**
