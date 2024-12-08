@@ -61,6 +61,8 @@ public class ContattoViewController implements Initializable {
     private Button btnSalva;
     @FXML
     private Button btnAnnulla;
+    private Contatto contatto;
+    private Rubrica rubrica;
     
     /**
      * @brief Crea un oggetto di ContattoViewController
