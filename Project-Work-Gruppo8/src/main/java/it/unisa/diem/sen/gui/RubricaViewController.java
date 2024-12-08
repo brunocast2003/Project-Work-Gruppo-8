@@ -48,6 +48,7 @@ public class RubricaViewController implements Initializable {
     @FXML
     private MenuItem esci; ///< Opzione di menu per chiudere l'applicazione.
 
+    private Rubrica rubrica;
     /**
      * @brief Inizializza il controller della vista.
      * 
