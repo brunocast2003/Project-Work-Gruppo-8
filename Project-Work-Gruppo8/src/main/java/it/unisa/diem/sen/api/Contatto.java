@@ -201,10 +201,10 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNome(String nome) {
-        return true;
+        return nome!=null && !nome.isEmpty();
     }
     @Override 
     public boolean validaCognome(String cognome) {
-        return true;
+        return cognome!=null && !cognome.isEmpty();
     }
 }
