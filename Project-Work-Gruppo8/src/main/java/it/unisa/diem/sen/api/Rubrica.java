@@ -18,6 +18,7 @@
 package it.unisa.diem.sen.api;
 
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -40,7 +41,7 @@ public class Rubrica<Contatto> implements FileIO{
     /**
      * @brief Crea un oggetto di tipo rubrica
      * 
-     * Questo metodo crea un oggetto Rubrica con un nome dato in input ed inizializza una lista di contatti
+     * Questo metodo crea un oggetto Rubrica e inizializza una lista di contatti
      * Inizializza una nuova rubrica vuota. 
      * @pre Rubrica inesistente
      *
@@ -50,7 +51,7 @@ public class Rubrica<Contatto> implements FileIO{
      * 
     */
     public Rubrica(){
-        
+        contatti = FXCollections.observableArrayList();
     }
     
     /**
@@ -64,6 +65,7 @@ public class Rubrica<Contatto> implements FileIO{
      *  @param contatto Il contatto da aggiungere alla rubrica.
     */
     public void aggiungiContatto(Contatto contatto){
+        this.contatti.add(contatto);
     }
     
     /**
@@ -75,6 +77,7 @@ public class Rubrica<Contatto> implements FileIO{
      * @post Il contatto specificato è rimosso dalla lista dei contatti, se esiste.
      */
     public void rimuoviContatto(Contatto contatto){
+        this.contatti.remove(contatto);
     } 
     
     /**
@@ -86,7 +89,7 @@ public class Rubrica<Contatto> implements FileIO{
      * @post Il contatto specificato è aggiornato nella lista dei contatti.
      */
     public void modificaContatto(Contatto contatto){
-        
+       
     }
     
     /**
