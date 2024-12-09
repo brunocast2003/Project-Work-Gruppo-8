@@ -60,7 +60,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     public String getNome() {
         return null;
     }
-
+    
     /**
      * @brief Imposta il nome del contatto.
      * 
@@ -109,7 +109,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @pre email != null
      * @post L'indirizzo email è aggiunto alla lista.
      */
-    public void setEmail(String email) {
+    public void setEmail(List email) {
     }
 
     /**
@@ -129,7 +129,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @pre numTelefono != null
      * @post Il numero di telefono è aggiunto alla lista.
      */
-    public void setNumTelefono(String numTelefono) {
+    public void setNumTelefono(List numTelefono) {
     }
 
     /**

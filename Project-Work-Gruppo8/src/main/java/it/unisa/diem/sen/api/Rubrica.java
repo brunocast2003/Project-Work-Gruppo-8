@@ -33,10 +33,9 @@ import javafx.collections.ObservableList;
  * @see FileIO
 
 */
-public class Rubrica<Contatto> implements FileIO{
+public class Rubrica implements FileIO{
     
     private ObservableList<Contatto> contatti;    ///< La lista di contatti gestita dalla rubrica.
-    
     
     /**
      * @brief Crea un oggetto di tipo rubrica
@@ -89,7 +88,14 @@ public class Rubrica<Contatto> implements FileIO{
      * @post Il contatto specificato è aggiornato nella lista dei contatti.
      */
     public void modificaContatto(Contatto contatto){
-       
+       for(Contatto c : contatti) {
+           if(c == contatto){
+               c.setNome(contatto.getNome());
+               c.setCognome(contatto.getCognome());
+               c.setNumTelefono(contatto.getNumTelefono());
+               c.setEmail(contatto.getEmail());
+           }
+       }
     }
     
     /**
