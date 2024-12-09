@@ -188,7 +188,11 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return true se il contatto è valido, false altrimenti.
      */
     @Override
-    public boolean validaContatto(Contatto contatto) {
+    public boolean validaNome(String nome) {
+        return false;
+    }
+    @Override 
+    public boolean validaCognome(String cognome) {
         return false;
     }
 }

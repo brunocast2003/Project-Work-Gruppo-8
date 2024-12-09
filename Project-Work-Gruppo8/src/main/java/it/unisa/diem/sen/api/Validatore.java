@@ -22,5 +22,7 @@ public interface Validatore {
 
     boolean validaNumTelefono(String numTelefono);
 
-    boolean validaContatto(Contatto contatto);
+    boolean validaNome(String nome);
+    
+    boolean validaCognome(String cognome);
 }
