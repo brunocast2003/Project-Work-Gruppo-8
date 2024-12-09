@@ -6,6 +6,8 @@
 package it.unisa.diem.sen.api;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @brief Classe che rappresenta un contatto nella rubrica.
@@ -167,7 +169,9 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaEmail(String email) {
-        return false;
+        return email.matches("^[A-Za-z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Za-z]{2,6}$");
+        
+        
     }
 
     /**
@@ -178,7 +182,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNumTelefono(String numTelefono) {
-        return false;
+        return numTelefono.matches("^[0-9]$");
     }
 
     /**
