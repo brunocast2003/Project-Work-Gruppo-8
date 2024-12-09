@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.sen.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +41,13 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Un'istanza della classe Contatto è inizializzata con almeno nome o cognome
      */
     public Contatto(String nome, String cognome) {
+        if(validaNome(nome) || validaCognome(cognome)){
+            this.nome = nome;
+            this.cognome = cognome;
+        }
+        
+        this.email  = new ArrayList<String>();
+        this.numTelefono  = new ArrayList<String>();
     }
 
     /**
