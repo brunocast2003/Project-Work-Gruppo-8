@@ -205,6 +205,6 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
     @Override 
     public boolean validaCognome(String cognome) {
-        return false;
+        return true;
     }
 }
