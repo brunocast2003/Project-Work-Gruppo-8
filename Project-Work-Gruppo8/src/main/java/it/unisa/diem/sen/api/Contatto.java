@@ -177,7 +177,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaEmail(String email) {
-        return email.matches("^[A-Za-z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Za-z]{2,6}$");
+        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
         
         
     }
