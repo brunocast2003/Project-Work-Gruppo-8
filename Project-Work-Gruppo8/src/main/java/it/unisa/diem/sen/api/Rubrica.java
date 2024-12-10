@@ -120,7 +120,7 @@ public class Rubrica implements FileIO{
      * @post I contatti nella rubrica sono ordinati.
      */
     public void ordinaRubrica() {
-        
+        FXCollections.sort(contatti);
     }
 
     /**
