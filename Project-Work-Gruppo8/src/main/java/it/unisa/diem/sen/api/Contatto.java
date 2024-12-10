@@ -164,6 +164,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public int compareTo(Contatto o) {
+        //
         return 0;
     }
 
