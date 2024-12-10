@@ -122,7 +122,16 @@ public class Rubrica implements FileIO{
     public void ordinaRubrica() {
         FXCollections.sort(contatti);
     }
-
+    
+    /**
+     * @brief Ritorna la lista di contatti
+     *
+     * @return contatti
+     */
+    public List<Contatto> getTuttiContatti() {
+        return this.contatti;
+    }
+    
     /**
      * @brief Carica una rubrica da file.
      * 

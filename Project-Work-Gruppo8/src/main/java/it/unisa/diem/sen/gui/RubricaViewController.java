@@ -63,6 +63,8 @@ public class RubricaViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        rubrica = new Rubrica();
+        aggiornaListaContatti();
     }    
 
 
@@ -134,5 +136,15 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void switchContattoView(ActionEvent event) {
+    }
+    
+    /**
+     * @brief Aggiorna la ListView per mostrare i contatti attualmente presenti in rubrica.
+     */
+    private void aggiornaListaContatti() {
+        listaContatti.getItems().clear();
+        for (Contatto contatto : rubrica.getTuttiContatti()) {
+            listaContatti.getItems().add(contatto.getNome() + " " + contatto.getCognome());
+        }
     }
 }
