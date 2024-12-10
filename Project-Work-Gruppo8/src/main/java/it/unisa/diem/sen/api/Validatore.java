@@ -25,4 +25,5 @@ public interface Validatore {
     boolean validaNome(String nome);
     
     boolean validaCognome(String cognome);
+    
 }
