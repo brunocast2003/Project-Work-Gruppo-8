@@ -12,18 +12,19 @@ import java.util.Collection;
  * @author Gireco Giovanni
  * @author Giachetta Corradomaria
  * @author Di Carluccio Alessandro
+ * @param <T extends Contatto> parametro di tipo Contatto o un eventuale sottoclasse
  */
-public interface GestoreContatti<T extends Contatto, C extends Collection<T>> {
+public interface GestoreContatti<T extends Contatto> {
     
     void aggiungiContatto(T contatto);
     
     void modificaContatto(T contatto);
     
-    C cercaContatti(String cerca); 
+    <C extends Collection<T>> C cercaContatti(String cerca); 
     
     void ordinaRubrica();
     
-    C getTuttiContatti();  
+    <C extends Collection<T>> C getTuttiContatti();  
     
 }
 
