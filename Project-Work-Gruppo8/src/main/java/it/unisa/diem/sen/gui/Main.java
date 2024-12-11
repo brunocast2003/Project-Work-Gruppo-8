@@ -35,11 +35,18 @@ public class Main extends Application{
     */ 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("RubricaView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RubricaView.fxml"));
+        Parent root = loader.load();
+        
+        RubricaViewController controller = loader.getController();
+        
         
         Scene scene = new Scene(root);
         
         primaryStage.setScene(scene);
+        controller.setStage(primaryStage);
+        
+        primaryStage.setTitle("Rubrica");
         primaryStage.show();
     }
     

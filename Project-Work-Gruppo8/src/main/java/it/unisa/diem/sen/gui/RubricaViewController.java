@@ -12,11 +12,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * @brief Controller per la gestione dell'interfaccia principale della rubrica.
@@ -49,6 +53,12 @@ public class RubricaViewController implements Initializable {
     private MenuItem esci; ///< Opzione di menu per chiudere l'applicazione.
 
     private Rubrica rubrica;
+    
+    private Stage stage;
+    
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     
     /**
      * @brief Inizializza il controller della vista.
@@ -108,6 +118,19 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void esci(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("Stai per uscire dal programma!");
+        
+        ButtonType cancelButtonType = new ButtonType("Annulla",ButtonData.CANCEL_CLOSE);
+        ButtonType esciButtonType = new ButtonType("Esci", ButtonData.OK_DONE);
+        
+        alert.getButtonTypes().setAll(cancelButtonType, esciButtonType);
+        
+        if (alert.showAndWait().get() == esciButtonType){
+            System.out.println("Uscito con successo!");
+            this.stage.close();
+        }
     }
 
     /**
