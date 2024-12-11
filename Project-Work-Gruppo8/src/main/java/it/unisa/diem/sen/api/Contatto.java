@@ -6,6 +6,7 @@
 package it.unisa.diem.sen.api;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,8 +32,8 @@ public class Contatto implements Comparable<Contatto>, Validatore {
 
     private String nome; ///< Nome del contatto.
     private String cognome; ///< Cognome del contatto.
-    private List<String> email; ///< Lista degli indirizzi email del contatto.
-    private List<String> numTelefono; ///< Lista dei numeri di telefono del contatto.
+    private  List<String> email; ///< Lista degli indirizzi email del contatto.
+    private  List<String> numTelefono; ///< Lista dei numeri di telefono del contatto.
 
     /**
      * @brief Costruttore della classe.
@@ -48,8 +49,8 @@ public class Contatto implements Comparable<Contatto>, Validatore {
             this.cognome = cognome;
         }
         
-        this.email  = new ArrayList<String>();
-        this.numTelefono  = new ArrayList<String>();
+        this.email  = new ArrayList<>();
+        this.numTelefono  = new ArrayList<>();
     }
 
     /**
@@ -58,7 +59,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return Il nome del contatto.
      */
     public String getNome() {
-        return null;
+        return this.nome;
     }
     
     /**
@@ -70,6 +71,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Il nome del contatto è aggiornato.
      */
     public void setNome(String nome) {
+      this.nome=nome;
     }
 
     /**
@@ -78,7 +80,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return Il cognome del contatto.
      */
     public String getCognome() {
-        return null;
+        return this.cognome;
     }
 
     /**
@@ -90,6 +92,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Il cognome del contatto è aggiornato.
      */
     public void setCognome(String cognome) {
+        this.cognome=cognome;
     }
 
     /**
@@ -98,7 +101,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return La lista degli indirizzi email del contatto.
      */
     public List<String> getEmail() {
-        return null;
+       return this.email;
     }
 
     /**
@@ -110,6 +113,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void setEmail(List email) {
+       this.email=email;
     }
 
     /**
@@ -118,7 +122,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return La lista dei numeri di telefono del contatto.
      */
     public List<String> getNumTelefono() {
-        return null;
+        return this.numTelefono;
     }
 
     /**
@@ -130,6 +134,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Il numero di telefono è aggiunto alla lista.
      */
     public void setNumTelefono(List numTelefono) {
+      this.numTelefono=numTelefono;
     }
 
     /**
@@ -140,7 +145,10 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @pre numero != null
      * @post Il numero di telefono è aggiunto alla lista.
      */
-    public void aggiungiNumeroTelefono(String numero) {
+    public void aggiungiNumeroTelefono(String numero) { 
+        if(validaNumTelefono(numero));
+            this.numTelefono.add(nome);
+       
     }
 
     /**
@@ -152,6 +160,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void aggiungiEmail(String email) {
+        this.email.add( email);
     }
 
     /**
@@ -164,10 +173,11 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public int compareTo(Contatto o) {
-        int risultato = this.cognome.compareTo(o.cognome);
-        if(risultato != 0)
+        int risultato = this.cognome.compareTo(o.getCognome());
+        if(risultato != 0) {
             return risultato;
-        return this.nome.compareTo(o.cognome);
+        }
+        return this.nome.compareTo(o.getNome());
     }
 
     /**
@@ -199,13 +209,20 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Verifica che il contatto contenga almeno un nome o un cognome.
      * 
-     * @param contatto Il contatto da validare.
+     * @param nome Il nome da validare.
      * @return true se il contatto è valido, false altrimenti.
      */
     @Override
     public boolean validaNome(String nome) {
         return nome!=null && !nome.isEmpty();
     }
+    
+     /**
+     * @brief Verifica che il contatto contenga almeno un nome o un cognome.
+     * 
+     * @param cognome Il nome da validare.
+     * @return true se il contatto è valido, false altrimenti.
+     */
     @Override 
     public boolean validaCognome(String cognome) {
         return cognome!=null && !cognome.isEmpty();
