@@ -6,6 +6,8 @@
 
 package it.unisa.diem.sen.gui;
 import it.unisa.diem.sen.api.*;
+import java.io.File;
+import java.io.IOException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -56,6 +59,7 @@ public class RubricaViewController implements Initializable {
     
     private Stage stage;
     
+    
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -90,6 +94,19 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void caricaRubrica(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll( new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            try {
+                rubrica = rubrica.caricaRubrica(file.getAbsolutePath());
+                aggiornaListaContatti();
+                System.out.println("Rubrica caricata da: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                System.err.println("Errore durante il caricamento della rubrica: " + e.getMessage());
+            }
+        }
     }
 
     /**
@@ -104,6 +121,18 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void salvaRubrica(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+    
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                rubrica.salvaRubrica(file.getAbsolutePath());
+                System.out.println("Rubrica salvata in: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                System.err.println("Errore durante il salvataggio della rubrica: " + e.getMessage());
+            }
+        }
     }
 
     /**
