@@ -10,4 +10,25 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <build>
+    <resources>
+        <!-- Configurazione per la directory personalizzata -->
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.fxml</include>
+            </includes>
+        </resource>
+    </resources>
+    <plugins>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <mainClass>it.unisa.diem.sen.gui.Main</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>

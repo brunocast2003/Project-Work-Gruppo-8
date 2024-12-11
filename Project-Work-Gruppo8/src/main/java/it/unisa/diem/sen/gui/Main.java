@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unisa.diem.sen.api;
+package it.unisa.diem.sen.gui;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -30,15 +34,20 @@ public class Main extends Application{
     * @see RubricaViewController
     */ 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/it/unisa/diem/sen/gui/RubricaView.fxml"));
         
+        Scene scene = new Scene(root);
+        
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        launch(args);
     }
     
 }

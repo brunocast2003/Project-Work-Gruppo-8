@@ -8,13 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="it.unisa.diem.sen.gui.RubricaViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.sen.gui.RubricaViewController">
    <children>
-      <TextField fx:id="barraRicerca" alignment="TOP_LEFT" layoutX="18.0" layoutY="14.0" prefHeight="25.0" prefWidth="500.0" promptText="Cerca un contatto..." />
-      <ListView fx:id="listaContatti" layoutX="18.0" layoutY="49.0" onMouseClicked="#switchContattoView" prefHeight="306.0" prefWidth="565.0" />
-      <Button fx:id="btnAggiungiContatto" layoutX="470.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchContattoView" text="Aggiungi contatto" />
-      <MenuBar layoutX="533.0" layoutY="14.0">
+      <TextField fx:id="barraRicerca" alignment="TOP_LEFT" layoutX="98.0" layoutY="14.0" prefHeight="28.0" prefWidth="486.0" promptText="Cerca un contatto..." AnchorPane.bottomAnchor="361.2" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="16.399999999999977" AnchorPane.topAnchor="12.0" />
+      <ListView fx:id="listaContatti" layoutX="18.0" layoutY="49.0" onMouseClicked="#switchContattoView" prefHeight="306.0" prefWidth="565.0" AnchorPane.bottomAnchor="44.80000000000001" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="49.0" />
+      <Button fx:id="btnAggiungiContatto" layoutX="427.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchContattoView" prefHeight="26.0" prefWidth="155.0" text="Aggiungi contatto" AnchorPane.bottomAnchor="6.600000000000023" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="18.600000000000023" AnchorPane.topAnchor="367.0" />
+      <MenuBar layoutX="18.0" layoutY="15.2" prefHeight="27.0" prefWidth="71.0" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="12.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

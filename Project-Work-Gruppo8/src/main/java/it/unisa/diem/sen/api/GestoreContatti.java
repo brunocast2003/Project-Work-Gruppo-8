@@ -12,6 +12,7 @@ import java.util.Collection;
  * @author Gireco Giovanni
  * @author Giachetta Corradomaria
  * @author Di Carluccio Alessandro
+ * 
  * @param <T extends Contatto> parametro di tipo Contatto o un eventuale sottoclasse
  */
 public interface GestoreContatti<T extends Contatto> {
