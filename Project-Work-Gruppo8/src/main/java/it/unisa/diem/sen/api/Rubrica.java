@@ -17,6 +17,10 @@
 
 package it.unisa.diem.sen.api;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -162,7 +166,25 @@ public class Rubrica implements FileIO{
      * @post La rubrica è salvata nel file specificato.
      */
     @Override
-    public void salvaRubrica(String nomefile) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void salvaRubrica(String nomefile) throws IOException {
+        try(PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter(nomefile))) ) {
+           pw.println("NOME;COGNOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL3");
+           
+           for(Contatto c : contatti) {
+               pw.print(c.getNome());
+               pw.print(";");
+               pw.print(c.getCognome());
+               pw.print(";");
+               for(String t : c.getNumTelefono()) {
+                   pw.print(t);
+                   pw.print(";");
+               }
+               for(String e : c.getEmail()) {
+                   pw.print(e);
+                   pw.print(";");
+               }
+               pw.append("\n");
+           }
+        }
     }
 }

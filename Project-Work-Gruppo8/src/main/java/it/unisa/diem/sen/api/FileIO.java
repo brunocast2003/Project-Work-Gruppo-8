@@ -6,6 +6,8 @@
 
 package it.unisa.diem.sen.api;
 
+import java.io.IOException;
+
 /**
  * @brief Interfaccia per la gestione dell'I/O della rubrica.
  * 
@@ -20,5 +22,5 @@ public interface FileIO {
 
     Rubrica caricaRubrica(String nomefile);
 
-    void salvaRubrica(String nomefile);
+    void salvaRubrica(String nomefile) throws IOException;
 }
