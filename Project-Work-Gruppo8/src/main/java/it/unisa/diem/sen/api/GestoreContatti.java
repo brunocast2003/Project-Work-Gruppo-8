@@ -19,9 +19,11 @@ public interface GestoreContatti<T extends Contatto> {
     
     void aggiungiContatto(T contatto);
     
+    void rimuoviContatto(T contatto);
+    
     void modificaContatto(T contatto);
     
-    <C extends Collection<T>> C cercaContatti(String cerca); 
+    <C extends Collection<T>> C cercaContatto(String cerca); 
     
     void ordinaRubrica();
     

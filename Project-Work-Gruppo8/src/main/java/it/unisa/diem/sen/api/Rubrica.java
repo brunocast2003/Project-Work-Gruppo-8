@@ -39,9 +39,10 @@ import javafx.collections.ObservableList;
  * @tparam Contatto Il tipo di elemento gestito dalla rubrica.
  * 
  * @see FileIO
+ * @see GestoreContatti
 
 */
-public class Rubrica implements FileIO{
+public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     
     private ObservableList<Contatto> contatti;    ///< La lista di contatti gestita dalla rubrica.
     
@@ -71,6 +72,7 @@ public class Rubrica implements FileIO{
      * 
      *  @param contatto Il contatto da aggiungere alla rubrica.
     */
+    @Override
     public void aggiungiContatto(Contatto contatto){
         this.contatti.add(contatto);
     }
@@ -83,6 +85,7 @@ public class Rubrica implements FileIO{
      * @pre contatto != null
      * @post Il contatto specificato è rimosso dalla lista dei contatti, se esiste.
      */
+    @Override
     public void rimuoviContatto(Contatto contatto){
         this.contatti.remove(contatto);
     } 
@@ -95,6 +98,7 @@ public class Rubrica implements FileIO{
      * @pre contatto != null
      * @post Il contatto specificato è aggiornato nella lista dei contatti.
      */
+    @Override
     public void modificaContatto(Contatto contatto){
        for(Contatto c : contatti) {
            if(c == contatto){
@@ -115,6 +119,7 @@ public class Rubrica implements FileIO{
      * @pre cerca != null
      * @post Restituisce una lista di contatti che soddisfano i criteri di ricerca.
      */
+    @Override
     public ObservableList<Contatto> cercaContatto(String cerca) {
         ObservableList<Contatto> result = FXCollections.observableArrayList();
 
@@ -134,6 +139,7 @@ public class Rubrica implements FileIO{
      * @pre Nessuna
      * @post I contatti nella rubrica sono ordinati.
      */
+    @Override
     public void ordinaRubrica() {
         FXCollections.sort(contatti);
     }
@@ -143,6 +149,7 @@ public class Rubrica implements FileIO{
      *
      * @return contatti
      */
+    @Override
     public List<Contatto> getTuttiContatti() {
         return this.contatti;
     }
