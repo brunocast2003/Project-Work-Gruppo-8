@@ -146,7 +146,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Il numero di telefono è aggiunto alla lista.
      */
     public void aggiungiNumeroTelefono(String numero) { 
-        if(validaNumTelefono(numero) && numTelefono.size() < 3){
+        if(validaNumTelefono(numero) && this.numTelefono.size() < 3){
             this.numTelefono.add(numero);
         }else throw new IllegalArgumentException("Numero non valido");
        
@@ -161,8 +161,8 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void aggiungiEmail(String email) {
-        if(validaNumTelefono(email) && this.email.size() < 3){
-            this.numTelefono.add(email);
+        if(validaEmail(email) && this.email.size() < 3){
+            this.email.add(email);
         }else throw new IllegalArgumentException("Email non valida");
     }
 
