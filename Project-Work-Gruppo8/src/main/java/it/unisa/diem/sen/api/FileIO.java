@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 public interface FileIO {
 
-    Rubrica caricaRubrica(String nomefile);
+    Rubrica caricaRubrica(String nomefile) throws IOException;
 
     void salvaRubrica(String nomefile) throws IOException;
 }
