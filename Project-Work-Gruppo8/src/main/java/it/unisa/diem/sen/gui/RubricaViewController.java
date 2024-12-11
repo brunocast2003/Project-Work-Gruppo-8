@@ -13,11 +13,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -45,7 +49,7 @@ public class RubricaViewController implements Initializable {
     @FXML
     private TextField barraRicerca; ///< Campo di testo per la ricerca dei contatti.
     @FXML
-    private ListView<String> listaContatti; ///< Lista dei contatti visualizzati.
+    private ListView<Contatto> listaContatti; ///< Lista dei contatti visualizzati.
     @FXML
     private Button btnAggiungiContatto; ///< Bottone per aggiungere un nuovo contatto.
     @FXML
@@ -173,7 +177,21 @@ public class RubricaViewController implements Initializable {
      * @post Nessuna.
      */
     @FXML
-    private void switchContattoView(MouseEvent event) {
+    private void switchContattoView(MouseEvent event) throws IOException {
+        if (event.getClickCount() == 2) {
+        Contatto contattoSelezionato = listaContatti.getSelectionModel().getSelectedItem();
+        if (contattoSelezionato != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ContattoView.fxml"));
+
+            loader.setControllerFactory(param -> 
+                new ContattoViewController(contattoSelezionato, rubrica, this)
+            );
+
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
     }
 
     /**
@@ -187,7 +205,20 @@ public class RubricaViewController implements Initializable {
      * @post Nessuna.
      */
     @FXML
-    private void switchContattoView(ActionEvent event) {
+    private void switchContattoView(ActionEvent event) throws IOException {
+        Contatto nuovoContatto = new Contatto("", "");
+
+        rubrica.aggiungiContatto(nuovoContatto);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ContattoView.fxml"));
+        loader.setControllerFactory(param -> 
+            new ContattoViewController(nuovoContatto, rubrica, this)
+        );
+        Parent root = loader.load();
+
+
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     
     /**
@@ -195,8 +226,15 @@ public class RubricaViewController implements Initializable {
      */
     private void aggiornaListaContatti() {
         listaContatti.getItems().clear();
-        for (Contatto contatto : rubrica.getTuttiContatti()) {
-            listaContatti.getItems().add(contatto.getNome() + " " + contatto.getCognome());
-        }
+        listaContatti.getItems().addAll(rubrica.getTuttiContatti());
+
+        listaContatti.setCellFactory(lv -> new ListCell<Contatto>() {
+            @Override
+            protected void updateItem(Contatto contatto, boolean empty) {
+                super.updateItem(contatto, empty);
+                setText(empty || contatto == null ? null : contatto.getNome() + " " + contatto.getCognome());
+            }
+        });
+
     }
 }
