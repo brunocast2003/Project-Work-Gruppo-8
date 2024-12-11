@@ -107,8 +107,15 @@ public class Rubrica implements FileIO{
      * @pre cerca != null
      * @post Restituisce una lista di contatti che soddisfano i criteri di ricerca.
      */
-    public List<Contatto> cercaContatto(String cerca) {
-        return null;
+    public ObservableList<Contatto> cercaContatto(String cerca) {
+        ObservableList<Contatto> result = FXCollections.observableArrayList();
+
+        for (Contatto contatto : contatti) {
+            if (contatto.getNome().toLowerCase().contains(cerca.toLowerCase()) || contatto.getCognome().toLowerCase().contains(cerca.toLowerCase())) {
+                result.add(contatto);
+            }
+        }
+        return result;
     }
     
     /**
