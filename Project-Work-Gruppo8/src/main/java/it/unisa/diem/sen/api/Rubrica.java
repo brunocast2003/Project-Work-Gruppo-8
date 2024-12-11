@@ -17,11 +17,15 @@
 
 package it.unisa.diem.sen.api;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -144,6 +148,7 @@ public class Rubrica implements FileIO{
     }
     
     /**
+     * @throws java.io.IOException
      * @brief Carica una rubrica da file.
      * 
      * @param nomefile Il nome del file da cui caricare la rubrica.
@@ -153,9 +158,41 @@ public class Rubrica implements FileIO{
      * @post Restituisce una rubrica caricata con i contatti presenti nel file.
      */
     @Override
-    public Rubrica caricaRubrica(String nomefile) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Rubrica caricaRubrica(String nomefile) throws IOException{
+        Rubrica r = new Rubrica();
+        r.contatti = this.contatti;
+        try(Scanner s = new Scanner(new BufferedReader(new FileReader(nomefile)))){
+            if(s.nextLine() == null) return r;
+            
+            s.useDelimiter("[;\n]");
+            s.useLocale(Locale.US); 
+            
+            while(s.hasNext()){
+                String nome = s.next();
+                String cognome = s.next();
+                String numTelefono1 = s.next();
+                String numTelefono2 = s.next();
+                String numTelefono3 = s.next();
+                String email1 = s.next();
+                String email2 = s.next();
+                String email3 = s.next();
+                
+                
+                Contatto c = new Contatto(nome, cognome);
+                c.aggiungiNumeroTelefono(numTelefono1);
+                c.aggiungiNumeroTelefono(numTelefono2);
+                c.aggiungiNumeroTelefono(numTelefono3);
+                c.aggiungiEmail(email1);
+                c.aggiungiEmail(email2);
+                c.aggiungiEmail(email3);
+                
+                r.aggiungiContatto(c);
+                
+            }
+        }
+        return r;
     }
+    
 
     /**
      * @brief Salva la rubrica su file.
