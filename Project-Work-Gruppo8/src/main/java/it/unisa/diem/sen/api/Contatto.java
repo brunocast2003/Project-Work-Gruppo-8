@@ -211,7 +211,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNumTelefono(String numTelefono) {
-        return numTelefono.matches("^[0-9]$");
+        return numTelefono.matches("^[0-9]+$");
     }
 
     /**
