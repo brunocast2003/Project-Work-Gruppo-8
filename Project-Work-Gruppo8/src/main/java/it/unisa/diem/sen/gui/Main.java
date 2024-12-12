@@ -29,7 +29,7 @@ public class Main extends Application{
     * 
     * Questo metodo serve per avviare l'interfaccia utente dell'applicazione.
     * 
-    * @param primaryStage Lo stage principale per questa applicazione
+    * @param primaryStage Lo RubricaViewController principale per questa applicazione
     * 
     * @see RubricaViewController
     */ 

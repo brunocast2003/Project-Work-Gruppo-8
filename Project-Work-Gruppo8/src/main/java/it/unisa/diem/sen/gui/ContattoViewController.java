@@ -7,14 +7,20 @@ package it.unisa.diem.sen.gui;
 
 import it.unisa.diem.sen.api.Contatto;
 import it.unisa.diem.sen.api.Rubrica;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -72,6 +78,13 @@ public class ContattoViewController implements Initializable {
     private Contatto contatto;
     private Rubrica rubrica;
     private RubricaViewController rubricaViewController;
+
+    private Stage stage;
+    
+    
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     
     /**
      * @brief Crea un oggetto di ContattoViewController
@@ -83,14 +96,40 @@ public class ContattoViewController implements Initializable {
      * @post un'istanza della classe ContattoViewController è inizializzato
      * 
      */
-    public ContattoViewController(Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
+    public ContattoViewController() {
+        
+    }
     
+    public void starter (Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
+        this.contatto = contatto;
+        this.rubrica = new Rubrica();
+        this.rubricaViewController = rubricaViewController;
+        
+        if (contatto != null) {
+            tfdNome.setText(contatto.getNome());
+            tfdCognome.setText(contatto.getCognome());
+
+            if (contatto.getNumTelefono().size() > 0)
+                tfdTelefono1.setText(contatto.getNumTelefono().get(0));
+            if (contatto.getNumTelefono().size() > 1)
+                tfdTelefono2.setText(contatto.getNumTelefono().get(1));
+            if (contatto.getNumTelefono().size() > 2)
+                tfdTelefono3.setText(contatto.getNumTelefono().get(2));
+
+            if (contatto.getEmail().size() > 0)
+                tfdEmail1.setText(contatto.getEmail().get(0));
+            if (contatto.getEmail().size() > 1)
+                tfdEmail2.setText(contatto.getEmail().get(1));
+            if (contatto.getEmail().size() > 2)
+                tfdEmail3.setText(contatto.getEmail().get(2));
+        }
     }
     
     /**
      * @brief Inizializza il controller della vista.
      * 
      * Questo metodo è chiamato automaticamente durante il caricamento della vista FXML.
+     * Inizializza i textfiled di ContattoView con i dati del contatto passato.
      * 
      * @param url L'URL utilizzato per risolvere percorsi relativi al file FXML.
      * @param rb Il `ResourceBundle` per localizzare la vista.
@@ -100,7 +139,7 @@ public class ContattoViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }
     
     /**
@@ -115,6 +154,7 @@ public class ContattoViewController implements Initializable {
      */
     @FXML
     private void rimuoviContatto(ActionEvent event) {
+        
     }
 
     /**
@@ -128,7 +168,32 @@ public class ContattoViewController implements Initializable {
      * @see RubricaView
      */
     @FXML
-    private void salvaContatto(ActionEvent event) {
+    private void salvaContatto(ActionEvent event) throws IOException {
+        contatto.setNome(tfdNome.getText());
+        contatto.setCognome(tfdCognome.getText());
+
+        contatto.getNumTelefono().clear();
+        if (!tfdTelefono1.getText().isEmpty()) 
+            contatto.aggiungiNumeroTelefono(tfdTelefono1.getText());
+        if (!tfdTelefono2.getText().isEmpty()) 
+            contatto.aggiungiNumeroTelefono(tfdTelefono2.getText());
+        if (!tfdTelefono3.getText().isEmpty()) 
+            contatto.aggiungiNumeroTelefono(tfdTelefono3.getText());
+
+        contatto.getEmail().clear();
+        if (!tfdEmail1.getText().isEmpty()) 
+            contatto.aggiungiEmail(tfdEmail1.getText());
+        if (!tfdEmail2.getText().isEmpty()) 
+            contatto.aggiungiEmail(tfdEmail2.getText());
+        if (!tfdEmail3.getText().isEmpty()) 
+            contatto.aggiungiEmail(tfdEmail3.getText());
+        
+        rubrica.aggiungiContatto(contatto);
+        
+        System.out.println(rubrica.toString());
+        System.out.println(contatto.getNome().toString());
+        
+        switchRubricaView(event);
     }
 
     /**
@@ -141,7 +206,8 @@ public class ContattoViewController implements Initializable {
      * @see RubricaView
      */
     @FXML
-    private void annulla(ActionEvent event) {
+    private void annulla(ActionEvent event) throws IOException {
+        switchRubricaView(event);
     }
     
     /**
@@ -152,7 +218,23 @@ public class ContattoViewController implements Initializable {
      * 
      * @see RubricaView
      */
-    public void switchRubricaView() {
+    public void switchRubricaView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RubricaView.fxml"));
+        
+        Parent root = loader.load();
+        
+        loader.setController(rubricaViewController);
+        
+        rubricaViewController.setStage(stage);
+
+        rubricaViewController.starter(rubrica);
+        
+        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        
+        stage.show();
+        
     }
    
 }
