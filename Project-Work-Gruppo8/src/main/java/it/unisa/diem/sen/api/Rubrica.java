@@ -78,6 +78,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     }
     
     /**
+     * @param contatto
      * @brief Rimuove un contatto dalla rubrica.
      * 
      * @param[in] contatto Il contatto da rimuovere dalla rubrica.
@@ -87,6 +88,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      */
     @Override
     public void rimuoviContatto(Contatto contatto){
+   
         this.contatti.remove(contatto);
     } 
     

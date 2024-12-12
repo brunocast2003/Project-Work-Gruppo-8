@@ -5,6 +5,7 @@
  */
 package it.unisa.diem.sen.api;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -64,7 +65,8 @@ public class ContattoTest {
     
     @Test
     public void testSetNome(){
-        
+     contatto1.setNome("mario");
+        assertEquals("mario", contatto1.getNome());
     }
     
     @Test
@@ -75,28 +77,42 @@ public class ContattoTest {
     
     @Test
     public void testSetCognome(){
-        
+        contatto1.setCognome("rossi");
+        assertEquals("rossi", contatto1.getCognome());
     }
     
     @Test
     public void testGetEmail(){
-        
+     List<String>email=new ArrayList<>();
+     email.add("mario@studenti.com");
+     contatto1.setEmail(email);
+        assertEquals(email,contatto1.getEmail());
     }
     
     @Test
     public void testSetEmail(){
-        
+      List<String> numeri=new ArrayList<>();
+      numeri.add("mariorossi@gmail.com");
+      contatto1.setEmail(numeri);
+        assertEquals(numeri, contatto1.getEmail());
     }
     
     @Test
     public void testGetNumTelefono(){
-        
+      List<String> numeri=new ArrayList<>();
+      numeri.add("341204042");
+      contatto1.setNumTelefono(numeri);
+        assertEquals(numeri, contatto1.getNumTelefono());
     }
     
     @Test
     public void testSetNumTelefono(){
-        
-    }
+       List<String> numeri=new ArrayList<>();
+      numeri.add("010");
+      contatto1.setNumTelefono(numeri);
+        assertEquals(numeri, contatto1.getNumTelefono());
+    }   
+    
     
     @Test
     public void testAggiungiNumTelefono(){
