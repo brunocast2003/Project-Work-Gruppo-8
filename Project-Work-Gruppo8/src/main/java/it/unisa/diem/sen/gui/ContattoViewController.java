@@ -102,7 +102,7 @@ public class ContattoViewController implements Initializable {
     
     public void starter (Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
         this.contatto = contatto;
-        this.rubrica = new Rubrica();
+        this.rubrica = rubrica;
         this.rubricaViewController = rubricaViewController;
         
         if (contatto != null) {
@@ -189,7 +189,8 @@ public class ContattoViewController implements Initializable {
             contatto.aggiungiEmail(tfdEmail3.getText());
         
         rubrica.aggiungiContatto(contatto);
-        
+         rubricaViewController.aggiornaListaContatti();
+        rubricaViewController.starter(rubrica);
         System.out.println(rubrica.toString());
         System.out.println(contatto.getNome().toString());
         
@@ -219,21 +220,12 @@ public class ContattoViewController implements Initializable {
      * @see RubricaView
      */
     public void switchRubricaView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RubricaView.fxml"));
         
-        Parent root = loader.load();
-        
-        loader.setController(rubricaViewController);
-        
-        rubricaViewController.setStage(stage);
+          Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    currentStage.close();
 
-        rubricaViewController.starter(rubrica);
-        
-        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-
-        stage.setScene(new Scene(root));
-        
-        stage.show();
+    // Mostra la finestra precedente (RubricaViewController)
+    rubricaViewController.getStage().show();
         
     }
    

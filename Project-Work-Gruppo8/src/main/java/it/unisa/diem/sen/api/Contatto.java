@@ -182,6 +182,15 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public int compareTo(Contatto o) {
+        if(cognome.isEmpty ()&& o.getCognome().isEmpty()){
+            return nome.compareTo(o.getNome());
+        }
+        if(cognome.isEmpty() ){
+            return 1;
+        }
+        if(o.getCognome().isEmpty()){
+            return -1;
+        }
         int risultato = this.cognome.compareTo(o.getCognome());
         if(risultato != 0) {
             return risultato;

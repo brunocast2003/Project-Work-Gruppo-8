@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -88,6 +90,7 @@ public class RubricaViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        aggiornaListaContatti();
 
     }    
 
@@ -207,35 +210,51 @@ public class RubricaViewController implements Initializable {
     private void handleActionEvent(ActionEvent event) throws IOException {
 
         Contatto nuovoContatto = new Contatto("", "");
-        rubrica.aggiungiContatto(nuovoContatto);     
+        //rubrica.aggiungiContatto(nuovoContatto); DI TROPPO
+        
         switchContattoView(event, nuovoContatto);
  
     }
     
     
     public void switchContattoView(Event event,Contatto contatto) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ContattoView.fxml"));
+       
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("ContattoView.fxml"));
 
-        Parent root = loader.load();
+    Parent root = loader.load();
 
-        ContattoViewController contattoViewController = loader.getController();
-        contattoViewController.starter(contatto, rubrica, this);
-        
-        contattoViewController.setStage(stage);
-        
-        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-
-        stage.setScene(new Scene(root));
-        
-        stage.show();
-    }
+    ContattoViewController contattoViewController = loader.getController();
+    contattoViewController.starter(contatto, rubrica, this);
+    
+    // Create a new scene
+    Scene scene = new Scene(root);
+    
+    // Create a new stage
+    Stage newStage = new Stage();
+    newStage.setScene(scene);
+    
+    // Pass the reference to the original stage
+    contattoViewController.setStage(this.stage);
+    
+    // Show the new stage
+    newStage.show();
+}
+    
+    
     
     /**
      * @brief Aggiorna la ListView per mostrare i contatti attualmente presenti in rubrica.
      */
     public void aggiornaListaContatti() {
-        listaContatti.getItems().clear();
-        listaContatti.getItems().addAll(rubrica.getTuttiContatti());
+        /*listaContatti.getItems().clear();
+        listaContatti.getItems().addAll(rubrica.getTuttiContatti()); */
+       List<Contatto> contatti = rubrica.getTuttiContatti();
+       Collections.sort(contatti);
+       listaContatti.getItems().clear();
+       listaContatti.getItems().addAll(contatti);
 
+    }
+    public Stage getStage(){
+        return stage;
     }
 }
