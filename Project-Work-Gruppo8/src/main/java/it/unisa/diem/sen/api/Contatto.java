@@ -221,7 +221,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNome(String nome) {
-        return nome!=null && !nome.isEmpty();
+        return nome!=null && !nome.trim().isEmpty();
     }
     
      /**
@@ -232,7 +232,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override 
     public boolean validaCognome(String cognome) {
-        return cognome!=null && !cognome.isEmpty();
+        return cognome!=null && !cognome.trim().isEmpty();
     }
     
     @Override
