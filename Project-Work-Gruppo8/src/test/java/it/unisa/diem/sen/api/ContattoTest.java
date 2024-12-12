@@ -28,7 +28,6 @@ public class ContattoTest {
     private Contatto contatto1;
     private Contatto contatto2;
     private Contatto contatto3;
-    private Contatto contatto4;
     
     
     @BeforeEach
@@ -74,7 +73,7 @@ public class ContattoTest {
     assertTrue(contatto1.validaEmail("example@email.com")); 
     assertFalse(contatto1.validaEmail("example.it")); 
     assertFalse(contatto1.validaEmail("example@com")); 
-    assertFalse(contatto1.validaEmail(" ")); 
+    assertFalse(contatto1.validaEmail(" "));
     }
     
     
@@ -90,6 +89,7 @@ public class ContattoTest {
     assertEquals("example@email.com", contatto1.getEmail().get(0));
     assertEquals("example2@email.com", contatto1.getEmail().get(1));
     assertEquals("example3@email.com", contatto1.getEmail().get(2));
-       
     }
+    
+    
 }
