@@ -28,47 +28,47 @@ public class ContattoTest {
     private Contatto contatto1;
     private Contatto contatto2;
     private Contatto contatto3;
-    private List<String> email;
-    private List<String> numTelefono;
+    private Contatto contatto4;
+    
     
     @BeforeEach
     public void setUp() {
-        contatto1 = new Contatto("Giuseppe", "Russo");
-        contatto2 = new Contatto(null, null);
-        contatto3 = new Contatto("Giuseppe", null);
-        email = new ArrayList<String>(3);
-        numTelefono = new ArrayList<String>(3);
+        contatto1 = new Contatto("Giuseppe", "Russo");      
+        contatto2 = new Contatto("Andrea", null);
+        contatto3 = new Contatto(null, "Bianchi");
+        
+        
     }
     
     @Test
     public void  testContatto(){
         assertEquals("Giuseppe", contatto1.getNome());
         assertEquals("Russo", contatto1.getCognome());
-        assertEquals(null, contatto2.getNome());
-        assertEquals(null, contatto2.getCognome());
-        assertEquals("Giuseppe", contatto3.getNome());
-        assertEquals(null, contatto3.getCognome());
         
-        for(String e : email){
-            assertEquals(" ", e);
-        }
+        assertEquals("Andrea", contatto2.getNome());
+        assertEquals("", contatto2.getCognome());
         
-        for(String n : numTelefono){
-            assertEquals(" ", n);
-        }
+        assertEquals("", contatto3.getNome());
+        assertEquals("Bianchi", contatto3.getCognome());
+        
+        //Nome e cognome entrmabi vuoti 
+        assertThrows(IllegalArgumentException.class, () -> new Contatto(null, null));
+        
+        assertTrue(contatto1.getEmail().isEmpty());
+        assertTrue(contatto1.getNumTelefono().isEmpty());
         
     }
     
     @Test
     public void testGetNome(){
         assertEquals("Giuseppe", contatto1.getNome());
-        assertEquals(null, contatto2.getNome());
+        assertEquals("", contatto2.getNome());
     }
     
     @Test
     public void testGetCognome(){
         assertEquals("Russo", contatto1.getCognome());
-        assertEquals(null, contatto3.getCognome());
+        assertEquals("", contatto3.getCognome());
     }
     
     @Test
@@ -82,10 +82,23 @@ public class ContattoTest {
     
     @Test
     public void testAggiungiEmail(){
-       contatto1.aggiungiEmail("example@email.com");
-       contatto2.aggiungiEmail("bad.example.email.com");
+      assertThrows(IllegalArgumentException.class, () -> contatto1.aggiungiEmail("bad.example@email"));
+
+    // Aggiunta di email valide
+    contatto1.aggiungiEmail("example@email.com");
+    contatto1.aggiungiEmail("example2@email.com");
+    contatto1.aggiungiEmail("example3@email.com");
+
+    // Verifica che venga lanciata un'eccezione quando si tenta di aggiungere una quarta email
+    assertThrows(IllegalStateException.class, () -> contatto1.aggiungiEmail("example4@email.com"));
+
+    // Verifica che la lista delle email abbia esattamente 3 elementi
+    assertEquals(3, contatto1.getEmail().size());
+
+    // Verifica che le email aggiunte siano corrette
+    assertEquals("example@email.com", contatto1.getEmail().get(0));
+    assertEquals("example2@email.com", contatto1.getEmail().get(1));
+    assertEquals("example3@email.com", contatto1.getEmail().get(2));
        
-        assertTrue(contatto1.getEmail().contains("example@email.com"));
-        assertFalse(contatto1.getEmail().contains("bad.example.email.com"));
     }
 }
