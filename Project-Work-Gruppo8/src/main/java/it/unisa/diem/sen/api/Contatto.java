@@ -235,4 +235,9 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     public boolean validaCognome(String cognome) {
         return cognome!=null && !cognome.isEmpty();
     }
+    
+    @Override
+    public String toString() {
+        return getNome() + " " + getCognome();
+    }
 }
