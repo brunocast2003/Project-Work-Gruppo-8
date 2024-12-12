@@ -70,7 +70,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      * 
      * @post Contatto generato ed aggiunto alla rubrica correttamente
      * 
-     *  @param contatto Il contatto da aggiungere alla rubrica.
+     *  @param[in] contatto Il contatto da aggiungere alla rubrica.
     */
     @Override
     public void aggiungiContatto(Contatto contatto){
@@ -80,7 +80,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     /**
      * @brief Rimuove un contatto dalla rubrica.
      * 
-     * @param contatto Il contatto da rimuovere dalla rubrica.
+     * @param[in] contatto Il contatto da rimuovere dalla rubrica.
      * 
      * @pre contatto != null
      * @post Il contatto specificato è rimosso dalla lista dei contatti, se esiste.
@@ -93,7 +93,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     /**
      * @brief Modifica un contatto nella rubrica.
      * 
-     * @param contatto Il contatto da modificare nella rubrica.
+     * @param[in] contatto Il contatto da modificare nella rubrica.
      * 
      * @pre contatto != null
      * @post Il contatto specificato è aggiornato nella lista dei contatti.
@@ -113,7 +113,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     /**
      * @brief Cerca contatti nella rubrica.
      * 
-     * @param cerca La stringa di ricerca da utilizzare.
+     * @param[in] cerca La stringa di ricerca da utilizzare.
      * @return Una lista di contatti che corrispondono ai criteri di ricerca.
      * 
      * @pre cerca != null
@@ -158,7 +158,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      * @throws java.io.IOException
      * @brief Carica una rubrica da file.
      * 
-     * @param nomefile Il nome del file da cui caricare la rubrica.
+     * @param[in] nomefile Il nome del file da cui caricare la rubrica.
      * @return Un'istanza di `Rubrica` caricata dal file.
      * 
      * @pre nomefile != null
@@ -204,7 +204,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     /**
      * @brief Salva la rubrica su file.
      * 
-     * @param nomefile Il nome del file in cui salvare la rubrica.
+     * @param[in] nomefile Il nome del file in cui salvare la rubrica.
      * 
      * @pre nomefile != null
      * @post La rubrica è salvata nel file specificato.

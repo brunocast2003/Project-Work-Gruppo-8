@@ -10,13 +10,13 @@ import java.io.IOException;
 
 /**
  * @brief Interfaccia per la gestione dell'I/O della rubrica.
+ * Questa interfaccia definisce i metodi per caricare e salvare una rubrica da e verso un file.
  * 
  * @author Castellano Bruno
  * @author Grieco Giovanni
  * @author Giachetta Corradomaria
  * @author Di Carluccio Alesssandro
  * 
- * Questa interfaccia definisce i metodi per caricare e salvare una rubrica da e verso un file.
  */
 public interface FileIO {
 
