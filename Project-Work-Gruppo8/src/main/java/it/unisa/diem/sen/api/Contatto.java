@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 /**
  * /**
  * @brief Un contatto nella rubrica.
+ * La classe fornisce metodi per accedere e modificare  nome, cognome, email e numeri di telefono
+ * Implementa l'interfaccia Validatore per verificare la correttezza dei dati inseriti
+ * e l'interfaccia Comparable per confrontare i contatti.
  * 
  * @invariant Il contatto deve avere, qualora esistano, numeri di telefono ed email validi.
  * @invariant Il contatto può avere fino a un massimo di tre numeri di telefono.
  * @invariant Il contatto può avere fino a un massimo di tre indirizzi email.
  * 
- * La classe fornisce metodi per accedere e modificare  nome, cognome, email e numeri di telefono
- * Implementa l'interfaccia Validatore per verificare la correttezza dei dati inseriti
- * e l'interfaccia Comparable per confrontare i contatti.
  * 
  * @author Castellano Bruno
  * @author Grieco Giovanni
