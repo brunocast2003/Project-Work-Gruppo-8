@@ -12,12 +12,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @brief Classe che rappresenta un contatto nella rubrica.
+ * /**
+ * @brief Un contatto nella rubrica.
  * 
- * La classe fornisce metodi per accedere e modificare  nome, cognome 
- * e fino a 3 email e 3 numeri di telefono.
- * Implementa l'interfaccia `Validatore` per verificare la validità dei dati inseriti
- * e l'interfaccia `Comparable` per confrontare i contatti.
+ * @invariant Il contatto deve avere, qualora esistano, numeri di telefono ed email validi.
+ * @invariant Il contatto può avere fino a un massimo di tre numeri di telefono.
+ * @invariant Il contatto può avere fino a un massimo di tre indirizzi email.
+ * 
+ * La classe fornisce metodi per accedere e modificare  nome, cognome, email e numeri di telefono
+ * Implementa l'interfaccia Validatore per verificare la correttezza dei dati inseriti
+ * e l'interfaccia Comparable per confrontare i contatti.
  * 
  * @author Castellano Bruno
  * @author Grieco Giovanni
@@ -38,8 +42,8 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Costruttore della classe.
      * 
-     * @param nome Il nome del contatto.
-     * @param cognome Il cognome del contatto.
+     * @param[in] nome Il nome del contatto.
+     * @param[in] cognome Il cognome del contatto.
      * 
      * @post Un'istanza della classe Contatto è inizializzata con almeno nome o cognome
      */
@@ -65,7 +69,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Imposta il nome del contatto.
      * 
-     * @param nome Il nuovo nome del contatto.
+     * @param[in] nome Il nuovo nome del contatto.
      * 
      * @pre nome != null
      * @post Il nome del contatto è aggiornato.
@@ -86,7 +90,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Imposta il cognome del contatto.
      * 
-     * @param cognome Il nuovo cognome del contatto.
+     * @param[in] cognome Il nuovo cognome del contatto.
      * 
      * @pre cognome != null
      * @post Il cognome del contatto è aggiornato.
@@ -105,12 +109,12 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
 
     /**
-     * @brief Imposta un indirizzo email per il contatto.
+     * @brief Associa una lista di email per il contatto.
      * 
-     * @param email L'indirizzo email da aggiungere.
+     * @param[in] email la List di email da associare al contatto.
      * 
      * @pre email != null
-     * @post L'indirizzo email è aggiunto alla lista.
+     * @post La lista email è associata correttamente al contatto.
      */
     public void setEmail(List email) {
        this.email=email;
@@ -126,12 +130,12 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
 
     /**
-     * @brief Imposta un numero di telefono per il contatto.
+     * @brief Associa una lista di numeri di telefono per il contatto.
      * 
-     * @param numTelefono Il numero di telefono da aggiungere.
+     * @param[in] numTelefono La lista di numeri di telefono da associare al contatto.
      * 
      * @pre numTelefono != null
-     * @post Il numero di telefono è aggiunto alla lista.
+     * @post La lista di numeri di telefono è associata correttamente al contatto.
      */
     public void setNumTelefono(List numTelefono) {
       this.numTelefono=numTelefono;
@@ -140,7 +144,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Aggiunge un numero di telefono alla lista.
      * 
-     * @param numero Il numero di telefono da aggiungere.
+     * @param[in] numero Il numero di telefono da aggiungere.
      * 
      * @pre numero != null
      * @post Il numero di telefono è aggiunto alla lista.
@@ -155,7 +159,9 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Aggiunge un indirizzo email alla lista.
      * 
-     * @param email L'indirizzo email da aggiungere.
+     * In caso di email non valida, lancia una IllegalArgumentException per notificare l'utente
+     * 
+     * @param[in] email L'indirizzo email da aggiungere.
      * 
      * @pre email != null
      * @post L'indirizzo email è aggiunto alla lista.
@@ -167,12 +173,13 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
 
     /**
-     * @brief Confronta due contatti.
+     * @brief Confronta due contatti
      * 
-     * @param o L'altro contatto da confrontare.
-     * @return Un valore negativo, zero o positivo in base al confronto alfabetico di nome e cognome.
+     * @param[in] o L'altro contatto da confrontare.
      * 
      * @pre o != null
+     * @return Un valore negativo, zero o positivo in base al confronto alfabetico di nome e cognome.
+     * 
      */
     @Override
     public int compareTo(Contatto o) {
@@ -186,22 +193,20 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     /**
      * @brief Verifica la correttezza sintattica dell'indirizzo email fornito.
      * 
-     * La String della email deve contenere al suo interno il carattere "@" ed almeno un "." .
+     * L'indirizzo email deve contenere al suo interno il carattere "@" ed almeno un ".".
      * 
-     * @param email L'indirizzo email da validare.
+     * @param[in] email L'indirizzo email da validare.
      * @return true se l'email è valida, false altrimenti.
      */
     @Override
     public boolean validaEmail(String email) {
         return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
-        
-        
     }
 
     /**
-     * @brief Verifica che il numero di telefono in input contenga solo caratteri
+     * @brief Verifica che il numero di telefono in input contenga esclusivamente cifre decimali
      * 
-     * @param numTelefono Il numero di telefono da validare.
+     * @param[in] numTelefono Il numero di telefono da validare.
      * @return true se il numero è valido, false altrimenti.
      */
     @Override
@@ -210,10 +215,10 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
 
     /**
-     * @brief Verifica che il contatto contenga almeno un nome o un cognome.
+     * @brief Verifica che il contatto contenga un nome 
      * 
-     * @param nome Il nome da validare.
-     * @return true se il contatto è valido, false altrimenti.
+     * @param[in] nome Il nome da validare.
+     * @return true se il nome è presente, false altrimenti.
      */
     @Override
     public boolean validaNome(String nome) {
@@ -221,10 +226,10 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     }
     
      /**
-     * @brief Verifica che il contatto contenga almeno un nome o un cognome.
+     * @brief Verifica che il contatto contenga un cognome
      * 
-     * @param cognome Il nome da validare.
-     * @return true se il contatto è valido, false altrimenti.
+     * @param[in] cognome Il cognome da validare.
+     * @return true se il cognome è presente, false altrimenti.
      */
     @Override 
     public boolean validaCognome(String cognome) {
