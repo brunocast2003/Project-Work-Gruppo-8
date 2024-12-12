@@ -167,9 +167,8 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void aggiungiEmail(String email) {
-        if(validaEmail(email) && this.email.size() < 3){
+        if(validaEmail(email))
             this.email.add(email);
-        }else throw new IllegalArgumentException("Email non valida");
     }
 
     /**

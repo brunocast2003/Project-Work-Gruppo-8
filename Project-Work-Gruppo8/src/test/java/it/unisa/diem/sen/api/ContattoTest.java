@@ -73,9 +73,19 @@ public class ContattoTest {
     
     @Test
     public void testValidaEmail(){
-    assertTrue(contatto1.validaEmail("example@email.com")); // Email valida
-    assertFalse(contatto1.validaEmail("example.it")); // Email non valida
-    assertFalse(contatto1.validaEmail("example@com")); // Email non valida
-    assertFalse(contatto1.validaEmail("")); // Email vuota
+    assertTrue(contatto1.validaEmail("example@email.com")); 
+    assertFalse(contatto1.validaEmail("example.it")); 
+    assertFalse(contatto1.validaEmail("example@com")); 
+    assertFalse(contatto1.validaEmail(" ")); 
+    }
+    
+    
+    @Test
+    public void testAggiungiEmail(){
+       contatto1.aggiungiEmail("example@email.com");
+       contatto2.aggiungiEmail("bad.example.email.com");
+       
+        assertTrue(contatto1.getEmail().contains("example@email.com"));
+        assertFalse(contatto1.getEmail().contains("bad.example.email.com"));
     }
 }
