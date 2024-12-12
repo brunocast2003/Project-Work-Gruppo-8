@@ -99,9 +99,9 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      * @post Il contatto specificato è aggiornato nella lista dei contatti.
      */
     @Override
-    public void modificaContatto(Contatto contatto){
+     public void modificaContatto(Contatto contatto){
        for(Contatto c : contatti) {
-           if(c == contatto){
+           if(c.getNome().equals(contatto.getNome())|| c.getCognome().equals(contatto.getNome())){
                c.setNome(contatto.getNome());
                c.setCognome(contatto.getCognome());
                c.setNumTelefono(contatto.getNumTelefono());
@@ -109,7 +109,6 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
            }
        }
     }
-    
     /**
      * @brief Cerca contatti nella rubrica.
      * 
