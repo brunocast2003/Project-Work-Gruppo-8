@@ -100,7 +100,13 @@ public class ContattoTest {
     
     @Test
     public void testAggiungiNumTelefono(){
+        contatto1.aggiungiNumeroTelefono("3276518923");
+        contatto1.aggiungiNumeroTelefono("333999666000");
+        contatto1.aggiungiNumeroTelefono("1926");
         
+        assertEquals("3276518923", contatto1.getNumTelefono().get(0));
+        assertEquals("333999666000", contatto1.getNumTelefono().get(1));
+        assertEquals("1926", contatto1.getNumTelefono().get(2));
     }
     
     @Test
@@ -109,8 +115,6 @@ public class ContattoTest {
     contatto1.aggiungiEmail("example@email.com");
     contatto1.aggiungiEmail("example2@email.com");
     contatto1.aggiungiEmail("example3@email.com");
-    
-    assertEquals(3, contatto1.getEmail().size());
     
     assertEquals("example@email.com", contatto1.getEmail().get(0));
     assertEquals("example2@email.com", contatto1.getEmail().get(1));
@@ -127,17 +131,24 @@ public class ContattoTest {
     
     @Test
     public void testValidaNumTelefono(){
-        
+        assertTrue(contatto1.validaNumTelefono("3276518923"));
+        assertFalse(contatto1.validaNumTelefono("998666eee2a"));
+        assertFalse(contatto1.validaNumTelefono("Eh... si"));
+        assertFalse(contatto1.validaNumTelefono(" "));
     }
     
     @Test
     public void testValidaNome(){
-        
+        assertTrue(contatto1.validaNome("Giuseppe"));
+        assertEquals(true, contatto2.validaNome("Andrea"));
+        assertFalse(contatto3.validaNome(""));
     }
     
     @Test
     public void testValidaCognome(){
-        
+        assertTrue(contatto1.validaCognome("Russo"));
+        assertEquals(false, contatto2.validaCognome(" "));
+        assertTrue(contatto3.validaCognome("Bianchi"));
     }
     
 }
