@@ -63,19 +63,45 @@ public class ContattoTest {
     }
     
     @Test
+    public void testSetNome(){
+        
+    }
+    
+    @Test
     public void testGetCognome(){
         assertEquals("Russo", contatto1.getCognome());
         assertEquals("Bianchi", contatto3.getCognome());
     }
     
     @Test
-    public void testValidaEmail(){
-    assertTrue(contatto1.validaEmail("example@email.com")); 
-    assertFalse(contatto1.validaEmail("example.it")); 
-    assertFalse(contatto1.validaEmail("example@com")); 
-    assertFalse(contatto1.validaEmail(" "));
+    public void testSetCognome(){
+        
     }
     
+    @Test
+    public void testGetEmail(){
+        
+    }
+    
+    @Test
+    public void testSetEmail(){
+        
+    }
+    
+    @Test
+    public void testGetNumTelefono(){
+        
+    }
+    
+    @Test
+    public void testSetNumTelefono(){
+        
+    }
+    
+    @Test
+    public void testAggiungiNumTelefono(){
+        
+    }
     
     @Test
     public void testAggiungiEmail(){
@@ -91,5 +117,27 @@ public class ContattoTest {
     assertEquals("example3@email.com", contatto1.getEmail().get(2));
     }
     
+    @Test
+    public void testValidaEmail(){
+    assertTrue(contatto1.validaEmail("example@email.com")); 
+    assertFalse(contatto1.validaEmail("example.it")); 
+    assertFalse(contatto1.validaEmail("example@com")); 
+    assertFalse(contatto1.validaEmail(" "));
+    }
+    
+    @Test
+    public void testValidaNumTelefono(){
+        
+    }
+    
+    @Test
+    public void testValidaNome(){
+        
+    }
+    
+    @Test
+    public void testValidaCognome(){
+        
+    }
     
 }
