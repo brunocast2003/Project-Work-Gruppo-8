@@ -171,33 +171,24 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     public Rubrica caricaRubrica(String nomefile) throws IOException{
         Rubrica r = new Rubrica();
         r.contatti = this.contatti;
-        try(Scanner s = new Scanner(new BufferedReader(new FileReader(nomefile)))){
-            if(s.nextLine() == null) return r;
+        try(BufferedReader br = new BufferedReader(new FileReader(nomefile))){
+            if(br.readLine() == null) 
+                return r ;
             
-            s.useDelimiter("[;\n]");
-            s.useLocale(Locale.US); 
+            String line;
             
-            while(s.hasNext()){
-                String nome = s.next();
-                String cognome = s.next();
-                String numTelefono1 = s.next();
-                String numTelefono2 = s.next();
-                String numTelefono3 = s.next();
-                String email1 = s.next();
-                String email2 = s.next();
-                String email3 = s.next();
+            while((line=br.readLine()) != null) {
+                String fields [] = line.split(";");
                 
+                Contatto c = new Contatto(fields[0], fields[1]);
+                c.aggiungiNumeroTelefono(fields[2]);
+                c.aggiungiNumeroTelefono(fields[3]);
+                c.aggiungiNumeroTelefono(fields[4]);
                 
-                Contatto c = new Contatto(nome, cognome);
-                c.aggiungiNumeroTelefono(numTelefono1);
-                c.aggiungiNumeroTelefono(numTelefono2);
-                c.aggiungiNumeroTelefono(numTelefono3);
-                c.aggiungiEmail(email1);
-                c.aggiungiEmail(email2);
-                c.aggiungiEmail(email3);
-                
+                c.aggiungiEmail(fields[5]);
+                c.aggiungiEmail(fields[6]);
+                c.aggiungiEmail(fields[7]);
                 r.aggiungiContatto(c);
-                
             }
         }
         return r;
@@ -224,11 +215,15 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
                pw.print(";");
                
                for (String t : c.getNumTelefono()){
+                   if(t.isEmpty())
+                       pw.print(" ");
                    pw.print(t);
                    pw.print(";");
                }
                
                for (String e : c.getEmail()){
+                   if(e.isEmpty())
+                       pw.print(" ");
                    pw.print(e);
                    pw.print(";");
                }
