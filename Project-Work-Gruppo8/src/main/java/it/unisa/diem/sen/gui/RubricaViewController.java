@@ -226,17 +226,13 @@ public class RubricaViewController implements Initializable {
     ContattoViewController contattoViewController = loader.getController();
     contattoViewController.starter(contatto, rubrica, this);
     
-    // Create a new scene
     Scene scene = new Scene(root);
     
-    // Create a new stage
     Stage newStage = new Stage();
     newStage.setScene(scene);
     
-    // Pass the reference to the original stage
     contattoViewController.setStage(this.stage);
     
-    // Show the new stage
     newStage.show();
 }
     
@@ -246,13 +242,12 @@ public class RubricaViewController implements Initializable {
      * @brief Aggiorna la ListView per mostrare i contatti attualmente presenti in rubrica.
      */
     public void aggiornaListaContatti() {
-        /*listaContatti.getItems().clear();
-        listaContatti.getItems().addAll(rubrica.getTuttiContatti()); */
+       rubrica.ordinaRubrica();
        List<Contatto> contatti = rubrica.getTuttiContatti();
        Collections.sort(contatti);
        listaContatti.getItems().clear();
        listaContatti.getItems().addAll(contatti);
-
+       
     }
     public Stage getStage(){
         return stage;

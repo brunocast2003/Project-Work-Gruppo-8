@@ -75,6 +75,7 @@ public class ContattoViewController implements Initializable {
     private Button btnSalva;
     @FXML
     private Button btnAnnulla;
+    
     private Contatto contatto;
     private Rubrica rubrica;
     private RubricaViewController rubricaViewController;
@@ -153,8 +154,11 @@ public class ContattoViewController implements Initializable {
      * @see RubricaView
      */
     @FXML
-    private void rimuoviContatto(ActionEvent event) {
-        
+    private void rimuoviContatto(ActionEvent event) throws IOException {
+        rubrica.rimuoviContatto(contatto);
+        rubricaViewController.aggiornaListaContatti();
+        rubricaViewController.starter(rubrica);
+        switchRubricaView(event);
     }
 
     /**
@@ -192,13 +196,9 @@ public class ContattoViewController implements Initializable {
         
         rubrica.aggiungiContatto(contatto);
         
-        
-        //System.out.println("bruh");
         rubricaViewController.aggiornaListaContatti();
         rubricaViewController.starter(rubrica);
-        System.out.println(rubrica.toString());
-        System.out.println(contatto.getNome().toString());
-        
+
         switchRubricaView(event);
     }
 
