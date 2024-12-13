@@ -103,7 +103,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return La lista degli indirizzi email del contatto.
      */
     public List<String> getEmail() {
-       return this.email;
+       return new ArrayList<>(this.email);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @return La lista dei numeri di telefono del contatto.
      */
     public List<String> getNumTelefono() {
-        return this.numTelefono;
+        return new ArrayList(this.numTelefono);
     }
 
     /**

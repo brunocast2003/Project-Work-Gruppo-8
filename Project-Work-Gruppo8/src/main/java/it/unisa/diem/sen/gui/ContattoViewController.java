@@ -105,7 +105,8 @@ public class ContattoViewController implements Initializable {
         this.contatto = contatto;
         this.rubrica = rubrica;
         this.rubricaViewController = rubricaViewController;
-        
+        if (contatto.getNome().isEmpty() && contatto.getCognome().isEmpty())
+            btnRimuoviContatto.setVisible(false);
         if (contatto != null) {
             tfdNome.setText(contatto.getNome());
             tfdCognome.setText(contatto.getCognome());
