@@ -74,6 +74,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     */
     @Override
     public void aggiungiContatto(Contatto contatto){
+        if(!contatti.contains(contatto))
         this.contatti.add(contatto);
     }
     
@@ -102,6 +103,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      */
     @Override
      public void modificaContatto(Contatto contatto){
+         //da rifare
        for(Contatto c : contatti) {
            if(c.getNome().equals(contatto.getNome())|| c.getCognome().equals(contatto.getNome())){
                c.setNome(contatto.getNome());

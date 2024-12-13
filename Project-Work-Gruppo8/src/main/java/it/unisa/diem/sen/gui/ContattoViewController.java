@@ -179,6 +179,8 @@ public class ContattoViewController implements Initializable {
             contatto.aggiungiNumeroTelefono(tfdTelefono2.getText());
         if (!tfdTelefono3.getText().isEmpty()) 
             contatto.aggiungiNumeroTelefono(tfdTelefono3.getText());
+        
+        
 
         contatto.getEmail().clear();
         if (!tfdEmail1.getText().isEmpty()) 
@@ -189,7 +191,10 @@ public class ContattoViewController implements Initializable {
             contatto.aggiungiEmail(tfdEmail3.getText());
         
         rubrica.aggiungiContatto(contatto);
-         rubricaViewController.aggiornaListaContatti();
+        
+        
+        //System.out.println("bruh");
+        rubricaViewController.aggiornaListaContatti();
         rubricaViewController.starter(rubrica);
         System.out.println(rubrica.toString());
         System.out.println(contatto.getNome().toString());

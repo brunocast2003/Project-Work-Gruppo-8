@@ -48,11 +48,9 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Un'istanza della classe Contatto è inizializzata con almeno nome o cognome
      */
     public Contatto(String nome, String cognome) {
-        if(validaNome(nome) || validaCognome(cognome)){
-            this.nome = nome;
-            this.cognome = cognome;
-        }
         
+        this.nome = nome;
+        this.cognome = cognome;
         this.email  = new ArrayList<>(3);
         this.numTelefono  = new ArrayList<>(3);
     }
