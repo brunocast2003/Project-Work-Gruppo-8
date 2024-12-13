@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -53,6 +54,8 @@ public class RubricaViewController implements Initializable {
     @FXML
     private TextField barraRicerca; ///< Campo di testo per la ricerca dei contatti.
     @FXML
+    private Button btnCerca;
+    @FXML
     private ListView<Contatto> listaContatti; ///< Lista dei contatti visualizzati.
     @FXML
     private Button btnAggiungiContatto; ///< Bottone per aggiungere un nuovo contatto.
@@ -66,7 +69,7 @@ public class RubricaViewController implements Initializable {
     private Rubrica rubrica = new Rubrica();
     
     private Stage stage;
-    
+
     
     public void starter(Rubrica rubrica) {
         this.rubrica = rubrica;
@@ -94,6 +97,19 @@ public class RubricaViewController implements Initializable {
 
     }    
 
+    @FXML
+    private void cerca(ActionEvent event) {
+    String testoRicerca = barraRicerca.getText().trim(); // Recupera il testo della barra di ricerca.
+    
+    if (!testoRicerca.isEmpty()) {
+        ObservableList<Contatto> result = this.rubrica.cercaContatto(testoRicerca);
+        listaContatti.getItems().clear();
+        listaContatti.getItems().addAll(result);
+    }else{
+        aggiornaListaContatti();
+    }
+
+    }
 
     /**
      * @brief Carica una rubrica da file.
@@ -252,4 +268,6 @@ public class RubricaViewController implements Initializable {
     public Stage getStage(){
         return stage;
     }
+
+
 }
