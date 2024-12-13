@@ -184,22 +184,15 @@ public class ContattoViewController implements Initializable {
         contatto.setCognome(tfdCognome.getText());
 
         contatto.getNumTelefono().clear();
-        if (!tfdTelefono1.getText().isEmpty()) 
-            contatto.aggiungiNumeroTelefono(tfdTelefono1.getText());
-        if (!tfdTelefono2.getText().isEmpty()) 
-            contatto.aggiungiNumeroTelefono(tfdTelefono2.getText());
-        if (!tfdTelefono3.getText().isEmpty()) 
-            contatto.aggiungiNumeroTelefono(tfdTelefono3.getText());
+        contatto.aggiungiNumeroTelefono(tfdTelefono1.getText());   
+        contatto.aggiungiNumeroTelefono(tfdTelefono2.getText());
+        contatto.aggiungiNumeroTelefono(tfdTelefono3.getText());
         
-        
-
         contatto.getEmail().clear();
-        if (!tfdEmail1.getText().isEmpty()) 
-            contatto.aggiungiEmail(tfdEmail1.getText());
-        if (!tfdEmail2.getText().isEmpty()) 
-            contatto.aggiungiEmail(tfdEmail2.getText());
-        if (!tfdEmail3.getText().isEmpty()) 
-            contatto.aggiungiEmail(tfdEmail3.getText());
+
+        contatto.aggiungiEmail(tfdEmail1.getText());
+        contatto.aggiungiEmail(tfdEmail2.getText()); 
+        contatto.aggiungiEmail(tfdEmail3.getText());
         
         rubrica.aggiungiContatto(contatto);
         

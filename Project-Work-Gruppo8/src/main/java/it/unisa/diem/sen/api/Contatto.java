@@ -166,8 +166,9 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void aggiungiEmail(String email) {
-        if(validaEmail(email))
-            this.email.add(email);
+        if(!validaEmail(email))
+            throw new IllegalArgumentException("Inserire una mail valida!");
+        this.email.add(email);
     }
 
     /**
@@ -207,7 +208,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaEmail(String email) {
-        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
+        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") || email.isEmpty();
     }
 
     /**
@@ -218,7 +219,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNumTelefono(String numTelefono) {
-        return numTelefono.matches("^[0-9]+$");
+        return numTelefono.matches("^[0-9]+$") || numTelefono.isEmpty();
     }
 
     /**
