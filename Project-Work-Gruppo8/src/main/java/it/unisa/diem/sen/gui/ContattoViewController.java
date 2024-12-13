@@ -105,8 +105,11 @@ public class ContattoViewController implements Initializable {
         this.contatto = contatto;
         this.rubrica = rubrica;
         this.rubricaViewController = rubricaViewController;
-        if (contatto.getNome().isEmpty() && contatto.getCognome().isEmpty())
+        
+        if (contatto == null){
             btnRimuoviContatto.setVisible(false);
+        }
+        
         if (contatto != null) {
             tfdNome.setText(contatto.getNome());
             tfdCognome.setText(contatto.getCognome());
@@ -174,6 +177,9 @@ public class ContattoViewController implements Initializable {
      */
     @FXML
     private void salvaContatto(ActionEvent event) throws IOException {
+        if(contatto == null) {
+            contatto = new Contatto(tfdNome.getText(),tfdCognome.getText());
+        }
         contatto.setNome(tfdNome.getText());
         contatto.setCognome(tfdCognome.getText());
 
@@ -227,11 +233,11 @@ public class ContattoViewController implements Initializable {
      */
     public void switchRubricaView(ActionEvent event) throws IOException {
         
-          Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    currentStage.close();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
-    // Mostra la finestra precedente (RubricaViewController)
-    rubricaViewController.getStage().show();
+        // Mostra la finestra precedente (RubricaViewController)
+        rubricaViewController.getStage().show();
         
     }
    

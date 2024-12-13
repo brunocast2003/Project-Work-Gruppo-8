@@ -222,13 +222,24 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
                pw.print(";");
                pw.print(c.getCognome());
                pw.print(";");
-               for(String t : c.getNumTelefono()) {
-                   pw.print(t);
-                   pw.print(";");
+               for(int i=0;i<3;i++) {
+                   if(c.getNumTelefono().get(i).isEmpty())
+                        pw.print(";");
+                   else
+                   {
+                        pw.print(c.getNumTelefono().get(i));
+                        pw.print(";");
+                   }
                }
-               for(String e : c.getEmail()) {
-                   pw.print(e);
-                   pw.print(";");
+               
+               for(int i=0;i<3;i++) {
+                   if(c.getEmail().get(i).isEmpty())
+                        pw.print(";");
+                   else
+                   {
+                        pw.print(c.getEmail().get(i));
+                        pw.print(";");
+                   }
                }
                pw.append("\n");
            }
