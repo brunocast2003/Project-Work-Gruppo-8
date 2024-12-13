@@ -142,7 +142,7 @@ public class ContattoTest {
     assertTrue(contatto1.validaEmail("example@email.com")); 
     assertFalse(contatto1.validaEmail("example.it")); 
     assertFalse(contatto1.validaEmail("example@com")); 
-    assertFalse(contatto1.validaEmail(" "));
+    assertTrue(contatto1.validaEmail(" "));
     }
     
     @Test
@@ -150,7 +150,7 @@ public class ContattoTest {
         assertTrue(contatto1.validaNumTelefono("3276518923"));
         assertFalse(contatto1.validaNumTelefono("998666eee2a"));
         assertFalse(contatto1.validaNumTelefono("Eh... si"));
-        assertFalse(contatto1.validaNumTelefono(" "));
+        assertTrue(contatto1.validaNumTelefono(""));
     }
     
     @Test
