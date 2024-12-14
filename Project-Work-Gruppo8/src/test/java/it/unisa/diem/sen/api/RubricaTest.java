@@ -20,14 +20,14 @@ public RubricaTest(){
     }
 @Test 
 public void testAggiungiContatto(){
-  Contatto c=new Contatto("andrea", "bruno");
+  Contatto c=new Contatto("Bruno", "Di Carluccio");
   rubrica.aggiungiContatto(c);
     assertEquals(c, rubrica.getTuttiContatti().get(0));
     assertEquals(1, rubrica.getTuttiContatti().size());
 }
 @Test
 public void testRimuoviContatto(){
-  Contatto c1=new Contatto("pasquale", "chiacchio");
+  Contatto c1=new Contatto("Pasquale", "La Mura");
   c1.aggiungiNumeroTelefono("354205020423");
   c1.aggiungiEmail("pasquale@example.com");
   rubrica.aggiungiContatto(c1);
@@ -39,10 +39,10 @@ public void testRimuoviContatto(){
 
 @Test 
 public void testModificaContatto(){
-  Contatto c=new Contatto("alessandro", "di carluccio");
+  Contatto c=new Contatto("Alessandro", "Di Carluccio");
   c.aggiungiEmail("alex@gmail.com");
   c.aggiungiNumeroTelefono("3245600604");
-  Contatto c1= new Contatto("alessandro", "chiacchio");
+  Contatto c1= new Contatto("Alessandro", "Porzio");
   c1.aggiungiEmail("example@gmail.com");
   c1.aggiungiNumeroTelefono("3243353341");
   rubrica.aggiungiContatto(c);
@@ -52,7 +52,7 @@ public void testModificaContatto(){
 }
 @Test 
 public void testCercaContatto(){
- Contatto c=new Contatto("andrea","bruno");
+ Contatto c=new Contatto("Giovanni","Giachetta");
  rubrica.aggiungiContatto(c);
     assertEquals(1,rubrica.getTuttiContatti().size());
     assertEquals(c, rubrica.getTuttiContatti().get(0));
@@ -63,7 +63,7 @@ public void testCercaContatto(){
         Contatto c1 = new Contatto("Alessandro", "Di Carluccio");
         c1.aggiungiNumeroTelefono("3421113445");
         c1.aggiungiEmail("example1@gmail.com");
-        Contatto c2 = new Contatto("Pasquale", "Chiacchio");
+        Contatto c2 = new Contatto("Armando", "Di Cesare");
         rubrica.aggiungiContatto(c1);
         rubrica.aggiungiContatto(c2);
         rubrica.ordinaRubrica();
@@ -72,8 +72,8 @@ public void testCercaContatto(){
     }
 @Test
 public void testGetTuttiContatti(){
-    Contatto c1=new Contatto("mario","ambrosone");
-     Contatto c2=new Contatto("mario","ambrosone");
+    Contatto c1=new Contatto("Diego Armando","Maradona");
+     Contatto c2=new Contatto("Khvicha","Kvaratskhelia");
   rubrica.aggiungiContatto(c1);
   rubrica.aggiungiContatto(c2);
  List<Contatto> list2=rubrica.getTuttiContatti();
