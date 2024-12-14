@@ -32,12 +32,15 @@ import java.util.regex.Pattern;
  * 
  * @see Validatore
  */
-public class Contatto implements Comparable<Contatto>, Validatore {
+public class Contatto implements Comparable<Contatto> {
 
     private String nome; ///< Nome del contatto.
     private String cognome; ///< Cognome del contatto.
     private  List<String> email; ///< Lista degli indirizzi email del contatto.
     private  List<String> numTelefono; ///< Lista dei numeri di telefono del contatto.
+    
+    
+    private static Validatore<Contatto> validatore = new ValidatoreStandard();
 
     /**
      * @brief Costruttore della classe.
@@ -48,7 +51,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Un'istanza della classe Contatto è inizializzata con almeno nome o cognome
      */
     public Contatto(String nome, String cognome) {
-        if((!validaNome(nome)) &&(!validaCognome(cognome)))
+        if((!validatore.validaNome(nome)) &&(!validatore.validaCognome(cognome)))
             throw new IllegalArgumentException("Inserisci almeno il nome o cognome!");
         this.nome = nome;
         this.cognome = cognome;
@@ -117,7 +120,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     public void setEmail(List<String> email) {
         for(String e : email) {
-            if(!(validaEmail(e) && email.size() < 3)){
+            if(!(validatore.validaEmail(e) && email.size() < 3)){
                 throw new IllegalArgumentException("Email non valida");
             }
         }
@@ -143,7 +146,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     public void setNumTelefono(List<String> numTelefono) {
         for(String n : numTelefono) {
-            if(!(validaNumTelefono(n) && numTelefono.size() < 3)){
+            if(!(validatore.validaNumTelefono(n) && numTelefono.size() < 3)){
                 throw new IllegalArgumentException("Numero non valido");
             }
         }
@@ -159,7 +162,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post Il numero di telefono è aggiunto alla lista.
      */
     public void aggiungiNumeroTelefono(String numero) { 
-        if(validaNumTelefono(numero) && this.numTelefono.size() < 3){
+        if(validatore.validaNumTelefono(numero) && this.numTelefono.size() < 3){
             this.numTelefono.add(numero);
         }else throw new IllegalArgumentException("Numero non valido");
        
@@ -176,7 +179,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @post L'indirizzo email è aggiunto alla lista.
      */
     public void aggiungiEmail(String email) {
-        if(!validaEmail(email))
+        if(!validatore.validaEmail(email))
             throw new IllegalArgumentException("Inserire una mail valida!");
         this.email.add(email);
     }
@@ -214,43 +217,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @param[in] email L'indirizzo email da validare.
      * @return true se l'email è valida, false altrimenti.
      */
-    @Override
-    public boolean validaEmail(String email) {
-        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") || email.isEmpty();
-    }
 
-    /**
-     * @brief Verifica che il numero di telefono in input contenga esclusivamente cifre decimali
-     * 
-     * @param[in] numTelefono Il numero di telefono da validare.
-     * @return true se il numero è valido, false altrimenti.
-     */
-    @Override
-    public boolean validaNumTelefono(String numTelefono) {
-        return numTelefono.matches("^[0-9]+$") || numTelefono.isEmpty();
-    }
-
-    /**
-     * @brief Verifica che il contatto contenga un nome 
-     * 
-     * @param[in] nome Il nome da validare.
-     * @return true se il nome è presente, false altrimenti.
-     */
-    @Override
-    public boolean validaNome(String nome) {
-        return nome!=null && !nome.trim().isEmpty();
-    }
-    
-     /**
-     * @brief Verifica che il contatto contenga un cognome
-     * 
-     * @param[in] cognome Il cognome da validare.
-     * @return true se il cognome è presente, false altrimenti.
-     */
-    @Override 
-    public boolean validaCognome(String cognome) {
-        return cognome!=null && !cognome.trim().isEmpty();
-    }
     
     @Override
     public String toString() {
