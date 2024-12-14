@@ -115,7 +115,12 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @pre email != null
      * @post La lista email è associata correttamente al contatto.
      */
-    public void setEmail(List email) {
+    public void setEmail(List<String> email) {
+        for(String e : email) {
+            if(!(validaEmail(e) && email.size() < 3)){
+                throw new IllegalArgumentException("Email non valida");
+            }
+        }
        this.email=email;
     }
 
@@ -136,8 +141,13 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      * @pre numTelefono != null
      * @post La lista di numeri di telefono è associata correttamente al contatto.
      */
-    public void setNumTelefono(List numTelefono) {
-      this.numTelefono=numTelefono;
+    public void setNumTelefono(List<String> numTelefono) {
+        for(String n : numTelefono) {
+            if(!(validaNumTelefono(n) && numTelefono.size() < 3)){
+                throw new IllegalArgumentException("Numero non valido");
+            }
+        }
+        this.numTelefono = numTelefono;
     }
 
     /**
