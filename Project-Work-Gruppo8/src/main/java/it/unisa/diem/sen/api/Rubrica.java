@@ -142,7 +142,7 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      * @pre Nessuna
      * @post I contatti nella rubrica sono ordinati.
      */
-    @Override
+    @Override 
     public void ordinaRubrica() {
         FXCollections.sort(contatti);
     }
