@@ -224,9 +224,6 @@ public class RubricaViewController implements Initializable {
      */
     @FXML
     private void handleActionEvent(ActionEvent event) throws IOException {
-
-        
-        //rubrica.aggiungiContatto(nuovoContatto); DI TROPPO
         
         switchContattoView(event,null);
  

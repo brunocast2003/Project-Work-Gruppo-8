@@ -171,24 +171,42 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     public Rubrica caricaRubrica(String nomefile) throws IOException{
         Rubrica r = new Rubrica();
         r.contatti = this.contatti;
-        try(BufferedReader br = new BufferedReader(new FileReader(nomefile))){
-            if(br.readLine() == null) 
-                return r ;
+        try(Scanner s = new Scanner(new BufferedReader(new FileReader(nomefile)))){
             
-            String line;
+            if (!s.hasNextLine())
+                return r;
+            else
+                s.nextLine();
             
-            while((line=br.readLine()) != null) {
-                String fields [] = line.split(";");
+            s.useDelimiter("[;\n]");
+            s.useLocale(Locale.US); 
+            
+            while(s.hasNext()){
+                String linea = s.nextLine();
+                String[] campi = linea.split(";");
+
+                String nome = campi.length > 0 ? campi[0].trim() : "";
+                String cognome = campi.length > 1 ? campi[1].trim() : "";
+
+                String numTelefono1 = campi.length > 2 ? campi[2].trim() : "";
+                String numTelefono2 = campi.length > 3 ? campi[3].trim() : "";
+                String numTelefono3 = campi.length > 4 ? campi[4].trim() : "";
+
+                String email1 = campi.length > 5 ? campi[5].trim() : "";
+                String email2 = campi.length > 6 ? campi[6].trim() : "";
+                String email3 = campi.length > 7 ? campi[7].trim() : "";
                 
-                Contatto c = new Contatto(fields[0], fields[1]);
-                c.aggiungiNumeroTelefono(fields[2]);
-                c.aggiungiNumeroTelefono(fields[3]);
-                c.aggiungiNumeroTelefono(fields[4]);
                 
-                c.aggiungiEmail(fields[5]);
-                c.aggiungiEmail(fields[6]);
-                c.aggiungiEmail(fields[7]);
+                Contatto c = new Contatto(nome, cognome);
+                c.aggiungiNumeroTelefono(numTelefono1);
+                c.aggiungiNumeroTelefono(numTelefono2);
+                c.aggiungiNumeroTelefono(numTelefono3);
+                c.aggiungiEmail(email1);
+                c.aggiungiEmail(email2);
+                c.aggiungiEmail(email3);
+                
                 r.aggiungiContatto(c);
+                
             }
         }
         return r;
@@ -205,30 +223,31 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      */
     @Override
     public void salvaRubrica(String nomefile) throws IOException {
-        try(PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter(nomefile))) ) {
-           pw.println("NOME;COGNOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL3");
-           
-           for(Contatto c : contatti) {
-               pw.print(c.getNome());
-               pw.print(";");
-               pw.print(c.getCognome());
-               pw.print(";");
-               
-               for (String t : c.getNumTelefono()){
-                   if(t.isEmpty())
-                       pw.print(" ");
-                   pw.print(t);
-                   pw.print(";");
-               }
-               
-               for (String e : c.getEmail()){
-                   if(e.isEmpty())
-                       pw.print(" ");
-                   pw.print(e);
-                   pw.print(";");
-               }
-               pw.append("\n");
-           }
-        }
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(nomefile)))) {
+            pw.println("NOME;COGNOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL 3");
+
+            for (Contatto c : contatti) {
+                pw.print(c.getNome());
+                pw.append(";");
+                pw.print(c.getCognome());
+                pw.append(";");
+
+                List<String> t = c.getNumTelefono();
+                for (int i = 0; i < 3; i++) {
+                    pw.append(i < t.size() ? t.get(i) : "");
+                    pw.append(";");
+                }
+
+                List<String> e = c.getEmail();
+                for (int j = 0; j < 3; j++) {
+                    pw.append(j < e.size() ? e.get(j) : "");
+                    if (j < 2) {
+                        pw.append(";");
+                    } else {
+                        pw.append("\n");
+                    }
+                }
+            }
+        }    
     }
 }
