@@ -163,6 +163,9 @@ public class ContattoViewController implements Initializable {
     @FXML
     private void rimuoviContatto(ActionEvent event) throws IOException {
         rubrica.rimuoviContatto(contatto);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Contatto rimosso con successo!");
+        alert.show();
         rubricaViewController.aggiornaListaContatti();
         rubricaViewController.starter(rubrica);
         switchRubricaView(event);
@@ -180,6 +183,15 @@ public class ContattoViewController implements Initializable {
      */
     @FXML
     private void salvaContatto(ActionEvent event) throws IOException {
+        if (tfdNome.getText().trim().isEmpty() && tfdCognome.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore di validazione");
+            alert.setHeaderText("Nome e Cognome mancanti");
+            alert.setContentText("Per favore, inserisci almeno il nome o il cognome.");
+            alert.showAndWait();
+            return;
+        }
+        
         if(contatto == null) {
             contatto = new Contatto(tfdNome.getText(),tfdCognome.getText());
         }else{
@@ -230,6 +242,10 @@ public class ContattoViewController implements Initializable {
         rubricaViewController.aggiornaListaContatti();
         rubricaViewController.starter(rubrica);
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Contatto salvato con successo!");
+        alert.show();
+        
         switchRubricaView(event);
     }
 

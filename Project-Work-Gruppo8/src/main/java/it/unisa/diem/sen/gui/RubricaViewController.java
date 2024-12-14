@@ -132,9 +132,15 @@ public class RubricaViewController implements Initializable {
             try {
                 rubrica = rubrica.caricaRubrica(file.getAbsolutePath());
                 aggiornaListaContatti();
-                System.out.println("Rubrica caricata da: " + file.getAbsolutePath());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Rubrica caricata con successo da: "+file.getAbsolutePath());
+                alert.show();
             } catch (IOException e) {
-                System.err.println("Errore durante il caricamento della rubrica: " + e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Errore durante il caricamento");
+                alert.setHeaderText("Non è stato possibile caricare la rubrica.");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         }
     }
@@ -158,9 +164,15 @@ public class RubricaViewController implements Initializable {
         if (file != null) {
             try {
                 rubrica.salvaRubrica(file.getAbsolutePath());
-                System.out.println("Rubrica salvata in: " + file.getAbsolutePath());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Rubrica salvata con successo in: "+file.getAbsolutePath());
+                alert.show();
             } catch (IOException e) {
-                System.err.println("Errore durante il salvataggio della rubrica: " + e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Errore durante il salvataggio");
+                alert.setHeaderText("Non è stato possibile salvare la rubrica.");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         }
     }
