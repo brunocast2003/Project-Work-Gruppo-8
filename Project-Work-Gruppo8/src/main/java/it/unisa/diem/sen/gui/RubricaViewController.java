@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -178,17 +179,24 @@ public class RubricaViewController implements Initializable {
     private void esci(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
-        alert.setHeaderText("Stai per uscire dal programma!");
+        alert.setHeaderText("Stai per uscire dal programma, vuoi salvare?");
         
         ButtonType cancelButtonType = new ButtonType("Annulla",ButtonData.CANCEL_CLOSE);
         ButtonType esciButtonType = new ButtonType("Esci", ButtonData.OK_DONE);
+        ButtonType salvaButtonType = new ButtonType("Salva ed esci", ButtonData.OK_DONE);
         
-        alert.getButtonTypes().setAll(cancelButtonType, esciButtonType);
+        alert.getButtonTypes().setAll(cancelButtonType, esciButtonType, salvaButtonType);
+
+        Optional<ButtonType> result = alert.showAndWait();
         
-        if (alert.showAndWait().get() == esciButtonType){
-            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-            stage.close();
-            System.out.println("Uscito con successo!!");
+        if (result.isPresent()) {
+            if (result.get() == salvaButtonType)
+                salvaRubrica(event);
+            if (result.get() == esciButtonType || result.get() == salvaButtonType) {
+                Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();                
+                stage.close();
+                System.out.println("Uscito con successo!");
+            }
         }
     }
 
