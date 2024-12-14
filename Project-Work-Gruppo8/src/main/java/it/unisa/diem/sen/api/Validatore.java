@@ -16,7 +16,7 @@ package it.unisa.diem.sen.api;
  * 
  * Questa interfaccia definisce i metodi per validare email, numeri di telefono e contatti.
  */
-public interface Validatore <T extends Contatto> {
+public interface Validatore  {
 
     boolean validaEmail(String email);
 

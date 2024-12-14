@@ -40,7 +40,7 @@ public class Contatto implements Comparable<Contatto> {
     private  List<String> numTelefono; ///< Lista dei numeri di telefono del contatto.
     
     
-    private static Validatore<Contatto> validatore = new ValidatoreStandard();
+    private final Validatore validatore;
 
     /**
      * @brief Costruttore della classe.
@@ -51,6 +51,7 @@ public class Contatto implements Comparable<Contatto> {
      * @post Un'istanza della classe Contatto è inizializzata con almeno nome o cognome
      */
     public Contatto(String nome, String cognome) {
+        this.validatore = new ValidatoreStandard();
         if((!validatore.validaNome(nome)) &&(!validatore.validaCognome(cognome)))
             throw new IllegalArgumentException("Inserisci almeno il nome o cognome!");
         this.nome = nome;
