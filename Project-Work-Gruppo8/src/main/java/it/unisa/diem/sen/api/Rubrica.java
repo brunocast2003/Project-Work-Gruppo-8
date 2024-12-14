@@ -164,10 +164,10 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
             while(s.hasNext()){
                 String linea = s.nextLine();
                 String[] campi = linea.split(";");
-
-                String nome = campi.length > 0 ? campi[0].trim() : "";
-                String cognome = campi.length > 1 ? campi[1].trim() : "";
-
+                
+                String cognome = campi.length > 0 ? campi[0].trim() : "";
+                String nome = campi.length > 1 ? campi[1].trim() : "";
+                
                 String numTelefono1 = campi.length > 2 ? campi[2].trim() : "";
                 String numTelefono2 = campi.length > 3 ? campi[3].trim() : "";
                 String numTelefono3 = campi.length > 4 ? campi[4].trim() : "";
@@ -175,7 +175,6 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
                 String email1 = campi.length > 5 ? campi[5].trim() : "";
                 String email2 = campi.length > 6 ? campi[6].trim() : "";
                 String email3 = campi.length > 7 ? campi[7].trim() : "";
-                
                 
                 Contatto c = new Contatto(nome, cognome);
                 c.aggiungiNumeroTelefono(numTelefono1);
@@ -207,9 +206,9 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
             pw.println("NOME;COGNOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL 3");
 
             for (Contatto c : contatti) {
-                pw.print(c.getNome());
-                pw.append(";");
                 pw.print(c.getCognome());
+                pw.append(";");              
+                pw.print(c.getNome());
                 pw.append(";");
 
                 List<String> t = c.getNumTelefono();

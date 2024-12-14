@@ -254,6 +254,6 @@ public class Contatto implements Comparable<Contatto>, Validatore {
     
     @Override
     public String toString() {
-        return getNome() + " " + getCognome();
+        return  getCognome()+ " " + getNome();
     }
 }
