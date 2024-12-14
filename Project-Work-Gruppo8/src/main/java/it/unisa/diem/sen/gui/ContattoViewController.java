@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -194,7 +195,16 @@ public class ContattoViewController implements Initializable {
         if (!tfdTelefono3.getText().isEmpty()) 
             nuoviNumeri.add(tfdTelefono3.getText());
         
-        contatto.setNumTelefono(nuoviNumeri);
+        try{
+            contatto.setNumTelefono(nuoviNumeri);      
+        }catch(IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore numeri");
+            alert.setHeaderText("Formato non valido");
+    
+            alert.showAndWait();
+            return;
+        }
 
         List<String> nuoveEmail = new ArrayList<>();
         if (!tfdEmail1.getText().isEmpty()) 
@@ -204,7 +214,16 @@ public class ContattoViewController implements Initializable {
         if (!tfdEmail3.getText().isEmpty()) 
             nuoveEmail.add(tfdEmail3.getText());
 
-        contatto.setEmail(nuoveEmail);
+        try{
+            contatto.setEmail(nuoveEmail);
+        }catch(IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore mail");
+            alert.setHeaderText("Formato non valido");
+    
+            alert.showAndWait();
+            return;
+        }
         
         rubrica.aggiungiContatto(contatto);
         
