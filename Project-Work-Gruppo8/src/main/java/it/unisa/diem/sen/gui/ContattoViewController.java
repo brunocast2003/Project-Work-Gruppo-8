@@ -9,6 +9,8 @@ import it.unisa.diem.sen.api.Contatto;
 import it.unisa.diem.sen.api.Rubrica;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -179,20 +181,30 @@ public class ContattoViewController implements Initializable {
     private void salvaContatto(ActionEvent event) throws IOException {
         if(contatto == null) {
             contatto = new Contatto(tfdNome.getText(),tfdCognome.getText());
+        }else{
+            contatto.setNome(tfdNome.getText());
+            contatto.setCognome(tfdCognome.getText());
         }
-        contatto.setNome(tfdNome.getText());
-        contatto.setCognome(tfdCognome.getText());
-
-        contatto.getNumTelefono().clear();
-        contatto.aggiungiNumeroTelefono(tfdTelefono1.getText());   
-        contatto.aggiungiNumeroTelefono(tfdTelefono2.getText());
-        contatto.aggiungiNumeroTelefono(tfdTelefono3.getText());
         
-        contatto.getEmail().clear();
+        List<String> nuoviNumeri = new ArrayList<>();
+        if (!tfdTelefono1.getText().isEmpty()) 
+            nuoviNumeri.add(tfdTelefono1.getText());
+        if (!tfdTelefono2.getText().isEmpty()) 
+            nuoviNumeri.add(tfdTelefono2.getText());
+        if (!tfdTelefono3.getText().isEmpty()) 
+            nuoviNumeri.add(tfdTelefono3.getText());
+        
+        contatto.setNumTelefono(nuoviNumeri);
 
-        contatto.aggiungiEmail(tfdEmail1.getText());
-        contatto.aggiungiEmail(tfdEmail2.getText()); 
-        contatto.aggiungiEmail(tfdEmail3.getText());
+        List<String> nuoveEmail = new ArrayList<>();
+        if (!tfdEmail1.getText().isEmpty()) 
+            nuoveEmail.add(tfdEmail1.getText());
+        if (!tfdEmail2.getText().isEmpty()) 
+            nuoveEmail.add(tfdEmail2.getText());
+        if (!tfdEmail3.getText().isEmpty()) 
+            nuoveEmail.add(tfdEmail3.getText());
+
+        contatto.setEmail(nuoveEmail);
         
         rubrica.aggiungiContatto(contatto);
         
