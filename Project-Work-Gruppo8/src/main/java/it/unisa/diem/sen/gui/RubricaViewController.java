@@ -255,21 +255,18 @@ public class RubricaViewController implements Initializable {
     contattoViewController.setStage(this.stage);
     
     newStage.show();
-}
-    
-    
-    
+    }
+      
     /**
      * @brief Aggiorna la ListView per mostrare i contatti attualmente presenti in rubrica.
      */
     public void aggiornaListaContatti() {
        rubrica.ordinaRubrica();
-       List<Contatto> contatti = rubrica.getTuttiContatti();
-       Collections.sort(contatti);
        listaContatti.getItems().clear();
-       listaContatti.getItems().addAll(contatti);
+       listaContatti.getItems().addAll(rubrica.getTuttiContatti());
        
     }
+    
     public Stage getStage(){
         return stage;
     }
