@@ -216,7 +216,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaEmail(String email) {
-        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") || email.isEmpty() || email.equals(" ");
+        return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") || email.isEmpty();
     }
 
     /**
@@ -227,7 +227,7 @@ public class Contatto implements Comparable<Contatto>, Validatore {
      */
     @Override
     public boolean validaNumTelefono(String numTelefono) {
-        return numTelefono.matches("^[0-9]+$") || numTelefono.isEmpty() || numTelefono.equals(" ");
+        return numTelefono.matches("^[0-9]+$") || numTelefono.isEmpty();
     }
 
     /**
