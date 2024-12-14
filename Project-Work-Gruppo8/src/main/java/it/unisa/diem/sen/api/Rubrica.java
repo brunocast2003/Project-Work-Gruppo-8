@@ -94,26 +94,6 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     } 
     
     /**
-     * @brief Modifica un contatto nella rubrica.
-     * 
-     * @param[in] contatto Il contatto da modificare nella rubrica.
-     * 
-     * @pre contatto != null
-     * @post Il contatto specificato è aggiornato nella lista dei contatti.
-     */
-    @Override
-     public void modificaContatto(Contatto contatto){
-         //da rifare
-       for(Contatto c : contatti) {
-           if(c.getNome().equals(contatto.getNome())|| c.getCognome().equals(contatto.getNome())){
-               c.setNome(contatto.getNome());
-               c.setCognome(contatto.getCognome());
-               c.setNumTelefono(contatto.getNumTelefono());
-               c.setEmail(contatto.getEmail());
-           }
-       }
-    }
-    /**
      * @brief Cerca contatti nella rubrica.
      * 
      * @param[in] cerca La stringa di ricerca da utilizzare.

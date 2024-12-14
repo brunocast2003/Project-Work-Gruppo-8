@@ -19,7 +19,6 @@ public interface GestoreContatti<T extends Contatto> {
     
     void rimuoviContatto(T contatto);
     
-    void modificaContatto(T contatto);
     
     <C extends Collection<T>> C cercaContatto(String cerca); 
     

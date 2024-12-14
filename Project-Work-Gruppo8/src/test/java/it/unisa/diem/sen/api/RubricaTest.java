@@ -38,19 +38,6 @@ public void testRimuoviContatto(){
 }
 
 @Test 
-public void testModificaContatto(){
-  Contatto c=new Contatto("Alessandro", "Di Carluccio");
-  c.aggiungiEmail("alex@gmail.com");
-  c.aggiungiNumeroTelefono("3245600604");
-  Contatto c1= new Contatto("Alessandro", "Porzio");
-  c1.aggiungiEmail("example@gmail.com");
-  c1.aggiungiNumeroTelefono("3243353341");
-  rubrica.aggiungiContatto(c);
-    assertEquals(1, rubrica.getTuttiContatti().size());
-  rubrica.modificaContatto(c1);
-    assertEquals(c, rubrica.getTuttiContatti().get(0));
-}
-@Test 
 public void testCercaContatto(){
  Contatto c=new Contatto("Giovanni","Giachetta");
  rubrica.aggiungiContatto(c);
