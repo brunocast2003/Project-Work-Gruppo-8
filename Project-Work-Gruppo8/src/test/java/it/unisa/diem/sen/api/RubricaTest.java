@@ -67,8 +67,8 @@ public void testCercaContatto(){
         rubrica.aggiungiContatto(c1);
         rubrica.aggiungiContatto(c2);
         rubrica.ordinaRubrica();
-        assertEquals(c2, rubrica.getTuttiContatti().get(0)); 
-        assertEquals(c1, rubrica.getTuttiContatti().get(1));
+        assertEquals(c1, rubrica.getTuttiContatti().get(0)); 
+        assertEquals(c2, rubrica.getTuttiContatti().get(1));
     }
 @Test
 public void testGetTuttiContatti(){
