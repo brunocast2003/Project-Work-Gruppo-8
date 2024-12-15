@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -162,13 +164,27 @@ public class ContattoViewController implements Initializable {
      */
     @FXML
     private void rimuoviContatto(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText("Sei sicuro di voler rimuovere il contatto?");
+    
+    
+    Optional<ButtonType> result = alert.showAndWait();
+    
+    if (result.isPresent() && result.get() == ButtonType.OK) {
         rubrica.rimuoviContatto(contatto);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Contatto rimosso con successo!");
-        alert.show();
+        
+        Alert successoAlert = new Alert(Alert.AlertType.INFORMATION);
+        successoAlert.setHeaderText("Contatto rimosso con successo!");
+        successoAlert.show();
+        
         rubricaViewController.aggiornaListaContatti();
         rubricaViewController.starter(rubrica);
-        switchRubricaView(event);
+    } else {
+        Alert annullaAlert = new Alert(Alert.AlertType.INFORMATION);
+        annullaAlert.setHeaderText("Operazione annullata!");
+        annullaAlert.show();
+    }
+    switchRubricaView(event);
     }
 
     /**
@@ -213,6 +229,7 @@ public class ContattoViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore numeri");
             alert.setHeaderText("Formato numero di telefono non valido");
+            alert.setContentText("Inserire nuovamente il numero di telefono!");
     
             alert.showAndWait();
             return;
@@ -232,6 +249,7 @@ public class ContattoViewController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore mail");
             alert.setHeaderText("Formato email non valido");
+            alert.setContentText("Inserire nuovamente l'email!");
     
             alert.showAndWait();
             return;

@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
@@ -104,6 +105,11 @@ public class RubricaViewController implements Initializable {
     
     if (!testoRicerca.isEmpty()) {
         ObservableList<Contatto> result = this.rubrica.cercaContatto(testoRicerca);
+        if(result.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Nessun contatto trovato!");
+            alert.show();
+        }
         listaContatti.getItems().clear();
         listaContatti.getItems().addAll(result);
     }else{
@@ -274,6 +280,11 @@ public class RubricaViewController implements Initializable {
      */
     public void aggiornaListaContatti() {
        rubrica.ordinaRubrica();
+        if (rubrica.getTuttiContatti().isEmpty()) {
+        listaContatti.setPlaceholder(new Label("La rubrica è vuota."));
+        } else {
+            listaContatti.setPlaceholder(null);
+        }
        listaContatti.getItems().clear();
        listaContatti.getItems().addAll(rubrica.getTuttiContatti());
        
