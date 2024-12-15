@@ -35,9 +35,7 @@ public class ContattoTest {
     public void setUp() {
         contatto1 = new Contatto("Giuseppe", "Russo");      
         contatto2 = new Contatto("Andrea", null);
-        contatto3 = new Contatto(null, "Bianchi");
-        
-        
+        contatto3 = new Contatto(null, "Bianchi");  
     }
     
     @Test
@@ -65,7 +63,7 @@ public class ContattoTest {
     
     @Test
     public void testSetNome(){
-     contatto1.setNome("mario");
+        contatto1.setNome("mario");
         assertEquals("mario", contatto1.getNome());
     }
     
@@ -83,33 +81,33 @@ public class ContattoTest {
     
     @Test
     public void testGetEmail(){
-     List<String>email=new ArrayList<>();
-     email.add("mario@studenti.com");
-     contatto1.setEmail(email);
+        List<String>email=new ArrayList<>();
+        email.add("mario@studenti.com");
+        contatto1.setEmail(email);
         assertEquals(email,contatto1.getEmail());
     }
     
     @Test
     public void testSetEmail(){
-      List<String> numeri=new ArrayList<>();
-      numeri.add("mariorossi@gmail.com");
-      contatto1.setEmail(numeri);
+        List<String> numeri=new ArrayList<>();
+        numeri.add("mariorossi@gmail.com");
+        contatto1.setEmail(numeri);
         assertEquals(numeri, contatto1.getEmail());
     }
     
     @Test
     public void testGetNumTelefono(){
-      List<String> numeri=new ArrayList<>();
-      numeri.add("341204042");
-      contatto1.setNumTelefono(numeri);
+        List<String> numeri=new ArrayList<>();
+        numeri.add("341204042");
+        contatto1.setNumTelefono(numeri);
         assertEquals(numeri, contatto1.getNumTelefono());
     }
     
     @Test
     public void testSetNumTelefono(){
-       List<String> numeri=new ArrayList<>();
-      numeri.add("010");
-      contatto1.setNumTelefono(numeri);
+        List<String> numeri=new ArrayList<>();
+        numeri.add("010");
+        contatto1.setNumTelefono(numeri);
         assertEquals(numeri, contatto1.getNumTelefono());
     }   
     
@@ -127,44 +125,12 @@ public class ContattoTest {
     
     @Test
     public void testAggiungiEmail(){
-        
-    contatto1.aggiungiEmail("example@email.com");
-    contatto1.aggiungiEmail("example2@email.com");
-    contatto1.aggiungiEmail("example3@email.com");
-    
-    assertEquals("example@email.com", contatto1.getEmail().get(0));
-    assertEquals("example2@email.com", contatto1.getEmail().get(1));
-    assertEquals("example3@email.com", contatto1.getEmail().get(2));
-    }
-    
-    @Test
-    public void testValidaEmail(){
-    assertTrue(contatto1.validaEmail("example@email.com")); 
-    assertFalse(contatto1.validaEmail("example.it")); 
-    assertFalse(contatto1.validaEmail("example@com")); 
-    assertTrue(contatto1.validaEmail(" "));
-    }
-    
-    @Test
-    public void testValidaNumTelefono(){
-        assertTrue(contatto1.validaNumTelefono("3276518923"));
-        assertFalse(contatto1.validaNumTelefono("998666eee2a"));
-        assertFalse(contatto1.validaNumTelefono("Eh... si"));
-        assertTrue(contatto1.validaNumTelefono(""));
-    }
-    
-    @Test
-    public void testValidaNome(){
-        assertTrue(contatto1.validaNome("Giuseppe"));
-        assertEquals(true, contatto2.validaNome("Andrea"));
-        assertFalse(contatto3.validaNome(""));
-    }
-    
-    @Test
-    public void testValidaCognome(){
-        assertTrue(contatto1.validaCognome("Russo"));
-        assertEquals(false, contatto2.validaCognome(" "));
-        assertTrue(contatto3.validaCognome("Bianchi"));
-    }
-    
+        contatto1.aggiungiEmail("example@email.com");
+        contatto1.aggiungiEmail("example2@email.com");
+        contatto1.aggiungiEmail("example3@email.com");
+
+        assertEquals("example@email.com", contatto1.getEmail().get(0));
+        assertEquals("example2@email.com", contatto1.getEmail().get(1));
+        assertEquals("example3@email.com", contatto1.getEmail().get(2));
+    }  
 }

@@ -6,7 +6,10 @@ package it.unisa.diem.sen.api;
 
 /**
  *
- * @author corry
+ * @author Castellano Bruno
+ * @author Gireco Giovanni
+ * @author Giachetta Corradomaria
+ * @author Di Carluccio Alessandro
  */
 public class ValidatoreStandard implements Validatore<Contatto>{
 
