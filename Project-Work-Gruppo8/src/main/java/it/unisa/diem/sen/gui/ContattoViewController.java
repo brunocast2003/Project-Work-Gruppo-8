@@ -6,6 +6,7 @@
 package it.unisa.diem.sen.gui;
 
 import it.unisa.diem.sen.api.Contatto;
+import it.unisa.diem.sen.api.GestoreContatti;
 import it.unisa.diem.sen.api.Rubrica;
 import java.io.IOException;
 import java.net.URL;
@@ -82,7 +83,7 @@ public class ContattoViewController implements Initializable {
     private Button btnAnnulla;
     
     private Contatto contatto;
-    private Rubrica rubrica;
+    private GestoreContatti<Contatto> rubrica;
     private RubricaViewController rubricaViewController;
 
     private Stage stage;
@@ -106,7 +107,7 @@ public class ContattoViewController implements Initializable {
         
     }
     
-    public void starter (Contatto contatto, Rubrica rubrica, RubricaViewController rubricaViewController) {
+    public void starter (Contatto contatto, GestoreContatti<Contatto> rubrica, RubricaViewController rubricaViewController) {
         this.contatto = contatto;
         this.rubrica = rubrica;
         this.rubricaViewController = rubricaViewController;

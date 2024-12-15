@@ -1,6 +1,7 @@
 
 package it.unisa.diem.sen.api;
 
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -24,7 +25,12 @@ public interface GestoreContatti<T extends Contatto> {
     
     void ordinaRubrica();
     
-    <C extends Collection<T>> C getTuttiContatti();  
+    <C extends Collection<T>> C getTuttiContatti(); 
+    
+    <R extends Rubrica> R caricaRubrica(String nomefile) throws IOException;
+    
+     void salvaRubrica(String nomefile)throws IOException;
+    
     
 }
 

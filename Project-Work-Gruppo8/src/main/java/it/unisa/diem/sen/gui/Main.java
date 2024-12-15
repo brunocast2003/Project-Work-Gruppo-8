@@ -6,6 +6,7 @@
 package it.unisa.diem.sen.gui;
 
 import it.unisa.diem.sen.api.Contatto;
+import it.unisa.diem.sen.api.GestoreContatti;
 import it.unisa.diem.sen.api.Rubrica;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -41,7 +42,7 @@ public class Main extends Application{
         Parent root = loader.load();
         
         RubricaViewController controller = loader.getController();
-        Rubrica rubrica = new Rubrica();
+        GestoreContatti<Contatto> rubrica = new Rubrica();
         
         controller.starter(rubrica);
         Scene scene = new Scene(root);

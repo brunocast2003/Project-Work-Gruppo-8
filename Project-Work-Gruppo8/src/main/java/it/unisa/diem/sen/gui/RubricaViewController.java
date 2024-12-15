@@ -68,12 +68,12 @@ public class RubricaViewController implements Initializable {
     @FXML
     private MenuItem esci; ///< Opzione di menu per chiudere l'applicazione.
 
-    private Rubrica rubrica = new Rubrica();
+    private GestoreContatti<Contatto> rubrica;
     
     private Stage stage;
 
     
-    public void starter(Rubrica rubrica) {
+    public void starter(GestoreContatti<Contatto> rubrica) {
         this.rubrica = rubrica;
         aggiornaListaContatti();
     }
@@ -95,7 +95,8 @@ public class RubricaViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        aggiornaListaContatti();
+        if(rubrica!=null)
+            aggiornaListaContatti();
 
     }    
 
