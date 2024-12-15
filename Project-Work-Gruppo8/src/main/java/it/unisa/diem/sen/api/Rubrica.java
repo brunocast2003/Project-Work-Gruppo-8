@@ -41,7 +41,7 @@ import javafx.collections.ObservableList;
     * @see FileIO
     * @see GestoreContatti
 */
-public class Rubrica implements FileIO, GestoreContatti<Contatto>{
+public class Rubrica implements GestoreContatti<Contatto>{
     
     private ObservableList<Contatto> contatti;    ///< La lista di contatti gestita dalla rubrica.
     
