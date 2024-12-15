@@ -11,7 +11,7 @@ package it.unisa.diem.sen.api;
  * @author Giachetta Corradomaria
  * @author Di Carluccio Alessandro
  */
-public class ValidatoreStandard implements Validatore<Contatto>{
+public class ValidatoreStandard implements Validatore{
 
     public boolean validaEmail(String email) {
         return email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") || email.isEmpty();

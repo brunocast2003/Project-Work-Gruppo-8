@@ -212,7 +212,7 @@ public class ContattoViewController implements Initializable {
         }catch(IllegalArgumentException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore numeri");
-            alert.setHeaderText("Formato non valido");
+            alert.setHeaderText("Formato numero di telefono non valido");
     
             alert.showAndWait();
             return;
@@ -231,7 +231,7 @@ public class ContattoViewController implements Initializable {
         }catch(IllegalArgumentException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore mail");
-            alert.setHeaderText("Formato non valido");
+            alert.setHeaderText("Formato email non valido");
     
             alert.showAndWait();
             return;
