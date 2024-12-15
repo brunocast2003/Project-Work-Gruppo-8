@@ -20,7 +20,6 @@ public interface GestoreContatti<T extends Contatto> {
     
     void rimuoviContatto(T contatto);
     
-    
     <C extends Collection<T>> C cercaContatto(String cerca); 
     
     void ordinaRubrica();
@@ -29,8 +28,7 @@ public interface GestoreContatti<T extends Contatto> {
     
     <R extends Rubrica> R caricaRubrica(String nomefile) throws IOException;
     
-     void salvaRubrica(String nomefile)throws IOException;
-    
+    void salvaRubrica(String nomefile)throws IOException;
     
 }
 

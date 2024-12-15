@@ -56,7 +56,7 @@ public class RubricaViewController implements Initializable {
     @FXML
     private TextField barraRicerca; ///< Campo di testo per la ricerca dei contatti.
     @FXML
-    private Button btnCerca;
+    private Button btnCerca;    ///<Bottone per cercare dei contatti.
     @FXML
     private ListView<Contatto> listaContatti; ///< Lista dei contatti visualizzati.
     @FXML
@@ -68,27 +68,52 @@ public class RubricaViewController implements Initializable {
     @FXML
     private MenuItem esci; ///< Opzione di menu per chiudere l'applicazione.
 
-    private GestoreContatti<Contatto> rubrica;
+    private GestoreContatti<Contatto> rubrica;  ///<L'elenco dei contatti da gestire.
     
-    private Stage stage;
+    private Stage stage;    ///<La finestra principale dell'applicazione.
 
-    
+    /**
+    * @brief Inizializza la gestione dei contatti impostando la rubrica e aggiornando la lista dei contatti.
+    *
+    * @param rubrica La rubrica contenente l'elenco dei contatti da gestire.
+    * @pre La rubrica passata come parametro deve essere non null.
+    * @post Il riferimento alla rubrica viene memorizzato e la lista dei contatti viene aggiornata.
+    */
     public void starter(GestoreContatti<Contatto> rubrica) {
         this.rubrica = rubrica;
         aggiornaListaContatti();
     }
     
+    /**
+    * @brief Imposta il riferimento allo stage principale dell'applicazione.
+    *
+    * @param[in] stage Rappresenta lo stage principale dell'interfaccia utente.
+    * @pre Lo stage passato come parametro deve essere valido e non null.
+    * @post Il riferimento allo stage viene aggiornato con l'istanza fornita.
+    */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
     
     /**
+    * @brief Restituisce lo stage principale della finestra.
+    *
+    * @pre Il campo stage deve essere inizializzato e rappresentare una finestra valida.
+    * @post Viene restituito l'oggetto Stage che rappresenta la finestra principale.
+    *
+    * @return L'oggetto stage.
+    */
+    public Stage getStage(){
+        return stage;
+    }
+
+    /**
      * @brief Inizializza il controller della vista.
      * 
      * Questo metodo è chiamato automaticamente durante il caricamento della vista FXML.
      * 
-     * @param url L'URL utilizzato per risolvere percorsi relativi al file FXML.
-     * @param rb Il `ResourceBundle` per localizzare la vista.
+     * @param[in] url L'URL utilizzato per risolvere percorsi relativi al file FXML.
+     * @param[in] rb Il `ResourceBundle` per localizzare la vista.
      * 
      * @pre La vista FXML è stata caricata correttamente.
      * @post Il controller è stato inizializzato.
@@ -100,6 +125,19 @@ public class RubricaViewController implements Initializable {
 
     }    
 
+    /**
+    * @brief Gestisce l'evento di ricerca di un contatto nella rubrica.
+    * Effettua la ricerca del contatto in base al testo inserito nella barra di ricerca
+    * e aggiorna la lista dei contatti visibile all'utente con i risultati trovati.
+    *
+    * @pre La barra di ricerca deve essere inizializzata e non null.
+    *      La rubrica deve essere inizializzata e contenere dati validi.
+    * @post Se il testo inserito è vuoto, viene ripristinata la lista completa dei contatti.
+    *       Se il testo inserito è valido, la lista dei contatti viene aggiornata con i risultati della ricerca.
+    *       In caso di nessun risultato, viene mostrato un warning.
+    *
+    * @param[in] event L'evento che ha scatenato l'azione.
+    */
     @FXML
     private void cerca(ActionEvent event) {
     String testoRicerca = barraRicerca.getText().trim();
@@ -120,15 +158,19 @@ public class RubricaViewController implements Initializable {
     }
 
     /**
-     * @brief Carica una rubrica da file.
-     * 
-     * Questo metodo è chiamato quando l'utente seleziona l'opzione di menu "Carica Rubrica".
-     * 
-     * @param event L'evento generato dalla selezione del menu.
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
+    * @brief Gestisce l'evento di caricamento della rubrica da un file CSV.
+    *       Consente all'utente di selezionare un file tramite un file chooser e carica i dati nella rubrica.
+    *
+    * @pre Lo stage principale deve essere inizializzato e non null.
+    * @post Se il file viene selezionato e caricato correttamente:
+    *       - La rubrica viene aggiornata con i dati del file.
+    *       - La lista dei contatti visibile viene aggiornata.
+    *       - Viene mostrato un messaggio informativo di successo.
+    *       Se si verifica un errore durante il caricamento:
+    *       - Viene mostrato un messaggio di errore con i dettagli dell'eccezione.
+    *
+    * @param[in] event L'evento che ha scatenato l'azione.
+    */
     @FXML
     private void caricaRubrica(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -153,15 +195,19 @@ public class RubricaViewController implements Initializable {
     }
 
     /**
-     * @brief Salva la rubrica su file.
-     * 
-     * Questo metodo è chiamato quando l'utente seleziona l'opzione di menu "Salva Rubrica".
-     * 
-     * @param event L'evento generato dalla selezione del menu.
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
+    * @brief Gestisce l'evento di salvataggio della rubrica su un file CSV.
+    *       Consente all'utente di selezionare un percorso tramite un file chooser e salva i dati della rubrica.
+    *
+    * @pre Lo stage principale deve essere inizializzato e non null.
+    *      La rubrica deve essere inizializzata.
+    * @post Se il file viene selezionato e il salvataggio riesce:
+    *       - I dati della rubrica vengono salvati nel file CSV specificato.
+    *       - Viene mostrato un messaggio informativo di successo.
+    *       Se si verifica un errore durante il salvataggio:
+    *       - Viene mostrato un messaggio di errore con i dettagli dell'eccezione.
+    *
+    * @param[in] event L'evento che ha scatenato l'azione.
+    */
     @FXML
     private void salvaRubrica(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -185,15 +231,16 @@ public class RubricaViewController implements Initializable {
     }
 
     /**
-     * @brief Chiude l'applicazione.
-     * 
-     * Questo metodo è chiamato quando l'utente seleziona l'opzione di menu "Esci".
-     * 
-     * @param event L'evento generato dalla selezione del menu.
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
+    * @brief Gestisce l'uscita dal programma con opzioni di conferma e salvataggio.
+    *
+    * @pre L'elemento che ha generato l'evento deve essere valido.
+    * @post Se l'utente sceglie:
+    *       - "Annulla", il programma rimane aperto e nessuna azione viene eseguita.
+    *       - "Esci", l'applicazione viene chiusa senza salvare.
+    *       - "Salva ed esci", i dati della rubrica vengono salvati e l'applicazione viene chiusa.
+    *
+    * @param[in] event L'evento che ha scatenato l'azione.
+    */
     @FXML
     private void esci(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -220,15 +267,16 @@ public class RubricaViewController implements Initializable {
     }
 
     /**
-     * @brief Cambia la vista per visualizzare i dettagli di un contatto.
-     * 
-     * Questo metodo è chiamato quando l'utente clicca due volte su un elemento della lista dei contatti.
-     * 
-     * @param event L'evento generato dal clic su un contatto.
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
+    * @breief Gestisce il doppio click su un contatto della lista.
+    * Se l'utente fa doppio clic su un contatto nella lista, viene aperta una nuova vista
+    * specifica per il contatto selezionato.
+    *
+    * @pre La lista dei contatti (listaContatti) deve essere inizializzata e popolata.
+    * @post Il contatto selezionato viene passato alla vista specifica tramite il metodo switchContattoView.
+    *
+    * @param[in] event L'evento generato dall'interazione con la lista.
+    * @throws IOException Se si verifica un errore durante il caricamento della nuova vista del contatto.
+    */
     @FXML
     private void handleMouseEvent(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2) {
@@ -240,15 +288,14 @@ public class RubricaViewController implements Initializable {
     }
 
     /**
-     * @brief Cambia la vista per visualizzare i dettagli di un contatto.
-     * 
-     * Questo metodo è chiamato quando l'utente clicca il bottone "Aggiungi contatto".
-     * 
-     * @param event L'evento generato dall'interazione col bottone "Aggiungi contatto".
-     * 
-     * @pre Nessuna.
-     * @post Nessuna.
-     */
+    * @brief Gestisce l'evento generato dal pulsante "Aggiungi Contatto".
+    *
+    * @pre Nessuna.
+    * @post Una nuova vista per l'aggiunta di un contatto viene caricata tramite switchContattoView.
+    *
+    * @param[in] event L'evento generato dalla pressione del pulsante "Aggiungi Contatto".
+    * @throws IOException Se si verifica un errore durante il caricamento della nuova vista.
+    */
     @FXML
     private void handleActionEvent(ActionEvent event) throws IOException {
         
@@ -256,7 +303,19 @@ public class RubricaViewController implements Initializable {
  
     }
     
-    
+    /**
+    * @brief Gestisce la transizione verso una nuova vista per la visualizzazione, modifica o aggiunta di un contatto.
+    *
+    * @pre La vista deve essere disponibile nel percorso specificato.
+    *      La variabile rubrica deve essere inizializzata e contenere i dati necessari.
+    * @post La vista ContattoView viene caricata e mostrata in una nuova finestra.
+    *       Se è presente un contatto, i suoi dati vengono passati alla vista per la modifica. 
+    *       La finestra contenente la vista viene aperta e visualizzata.
+    *
+    * @param[in] event L'evento che ha causato il passaggio alla vista (clic sul pulsante o doppio click sul contatto).
+    * @param[in] contatto Il contatto da visualizzare o modificare. Se null, la vista sarà per aggiungere un nuovo contatto.
+    * @throws IOException Se si verifica un errore durante il caricamento della vista.
+    */
     public void switchContattoView(Event event,Contatto contatto) throws IOException {
        
     FXMLLoader loader = new FXMLLoader(getClass().getResource("ContattoView.fxml"));
@@ -277,8 +336,19 @@ public class RubricaViewController implements Initializable {
     }
       
     /**
-     * @brief Aggiorna la ListView per mostrare i contatti attualmente presenti in rubrica.
-     */
+    * @brief Aggiorna la lista dei contatti visualizzati nell'interfaccia utente.
+    * Ordina i contatti nella rubrica, aggiorna la visualizzazione dei contatti e gestisce il messaggio di placeholder
+    * quando la rubrica è vuota.
+    *
+    * @pre La rubrica deve essere inizializzata.
+    *      listaContatti deve essere inizializzato.
+    * @post La lista dei contatti visualizzata viene aggiornata:
+    *       - I contatti vengono ordinati.
+    *       - Se la rubrica è vuota, viene mostrato un messaggio di placeholder che avvisa l'utente.
+    *       - Se la rubrica non è vuota, il placeholder viene rimosso e i contatti vengono aggiunti alla lista.
+    *
+    * @throws NullPointerException Se rubrica o listaContatti non sono inizializzati.
+    */
     public void aggiornaListaContatti() {
        rubrica.ordinaRubrica();
         if (rubrica.getTuttiContatti().isEmpty()) {
@@ -290,10 +360,5 @@ public class RubricaViewController implements Initializable {
        listaContatti.getItems().addAll(rubrica.getTuttiContatti());
        
     }
-    
-    public Stage getStage(){
-        return stage;
-    }
-
 
 }

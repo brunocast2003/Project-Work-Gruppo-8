@@ -30,17 +30,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
-     * @brief La lista di contatti 
-     * 
+    * @brief La lista di contatti 
+    * 
     * Questa classe permette di gestire una lista di contatti, offrendo funzionalità  
- * per aggiungere, rimuovere, modificare e cercare contatti, oltre a caricare e salvare la rubrica.
- * Implementa l'interfaccia `FileIO` per gestire l'importazione e l'esportazione da e verso file.
- * 
- * @tparam Contatto Il tipo di elemento gestito dalla rubrica.
- * 
- * @see FileIO
- * @see GestoreContatti
-
+    * per aggiungere, rimuovere, modificare e cercare contatti, oltre a caricare e salvare la rubrica.
+    * Implementa l'interfaccia `FileIO` per gestire l'importazione e l'esportazione da e verso file.
+    * 
+    * @tparam Contatto Il tipo di elemento gestito dalla rubrica.
+    * 
+    * @see FileIO
+    * @see GestoreContatti
 */
 public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     
@@ -54,9 +53,6 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
      * @pre Rubrica inesistente
      *
      * @post Una nuova istanza di `Rubrica` è creata con una lista vuota di contatti.
-
-     * 
-     * 
     */
     public Rubrica(){
         contatti = FXCollections.observableArrayList();
@@ -94,14 +90,16 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     } 
     
     /**
-     * @brief Cerca contatti nella rubrica.
-     * 
-     * @param[in] cerca La stringa di ricerca da utilizzare.
-     * @return Una lista di contatti che corrispondono ai criteri di ricerca.
-     * 
-     * @pre cerca != null
-     * @post Restituisce una lista di contatti che soddisfano i criteri di ricerca.
-     */
+    * @brief Esegue la ricerca di contatti in base al nome o cognome, ignorando maiuscole/minuscole.
+    * La ricerca avviene sia per nome che per cognome, considerando anche le possibili combinazioni 
+    * di nome e cognome invertiti (nome cognome e cognome nome).
+    * 
+    * @param[in] cerca La stringa di ricerca, rappresentante parte del nome o cognome del contatto.
+    * @return Una lista di contatti che corrispondono alla stringa di ricerca.
+    * 
+    * @pre La lista di contatti deve essere inizializzata e contenere almeno un contatto.
+    * @post Restituisce una lista di contatti che contengono il testo di ricerca nel nome, cognome o nelle combinazioni invertite di nome e cognome.
+    */
     @Override
     public ObservableList<Contatto> cercaContatto(String cerca) {
         ObservableList<Contatto> result = FXCollections.observableArrayList();
@@ -120,38 +118,43 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     }
     
     /**
-     * @brief Ordina la rubrica in base ai contatti.
-     * 
-     * Ordina i contatti in ordine alfabetico per cognome, e successivamente per nome.
-     * 
-     * @pre Nessuna
-     * @post I contatti nella rubrica sono ordinati.
-     */
+    * @brief Ordina la rubrica in base all'ordinamento naturale dei contatti.
+    * Utilizza il metodo `compareTo` definito nella classe `Contatto` per ordinare la lista di contatti.
+    * 
+    * @pre La lista di contatti deve essere inizializzata e non vuota.
+    * @post La lista di contatti sarà ordinata in ordine crescente in base all'ordinamento naturale definito nella classe `Contatto`.
+    */
     @Override 
     public void ordinaRubrica() {
         FXCollections.sort(contatti);
     }
     
     /**
-     * @brief Ritorna la lista di contatti
-     *
-     * @return contatti
-     */
+    * @brief Restituisce l'intera lista di contatti presenti nella rubrica.
+    * 
+    * @return La lista di tutti i contatti attualmente memorizzati nella rubrica.
+    * 
+    * @pre La lista di contatti deve essere inizializzata.
+    * @post Viene restituita la lista completa di contatti.
+    */
     @Override
     public List<Contatto> getTuttiContatti() {
         return this.contatti;
     }
     
     /**
-     * @throws java.io.IOException
-     * @brief Carica una rubrica da file.
-     * 
-     * @param[in] nomefile Il nome del file da cui caricare la rubrica.
-     * @return Un'istanza di `Rubrica` caricata dal file.
-     * 
-     * @pre nomefile != null
-     * @post Restituisce una rubrica caricata con i contatti presenti nel file.
-     */
+    * @brief Carica la rubrica da un file CSV e restituisce un oggetto `Rubrica` contenente tutti i contatti letti.
+    * I contatti nel file sono separati da punto e virgola (";"), e il formato previsto è:
+    * cognome, nome, numeri di telefono (fino a 3), email (fino a 3).
+    * 
+    * @param[in] nomefile Il percorso del file CSV da cui caricare i contatti.
+    * @return Un oggetto `Rubrica` contenente i contatti letti dal file.
+    * 
+    * @pre Il file deve esistere e deve essere accessibile per la lettura.
+    * @post La rubrica verrà caricata con i contatti letti dal file.
+    * 
+    * @throws IOException Se si verifica un errore durante la lettura del file.
+    */
     @Override
     public Rubrica caricaRubrica(String nomefile) throws IOException{
         Rubrica r = new Rubrica();
@@ -198,17 +201,21 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     
 
     /**
-     * @brief Salva la rubrica su file.
-     * 
-     * @param[in] nomefile Il nome del file in cui salvare la rubrica.
-     * 
-     * @pre nomefile != null
-     * @post La rubrica è salvata nel file specificato.
-     */
+    * @brief Salva la rubrica in un file CSV. Ogni contatto verrà scritto su una riga separata, con i suoi dettagli 
+    * (cognome, nome, numeri di telefono ed email) separati da punto e virgola.
+    * Se un contatto non ha uno o più numeri di telefono o email, il campo corrispondente sarà lasciato vuoto.
+    * La prima riga del file conterrà l'intestazione con i nomi dei campi.
+    * 
+    * @param[in] nomefile Il percorso del file CSV in cui salvare i contatti.
+    * @throws IOException Se si verifica un errore durante la scrittura nel file.
+    * 
+    * @pre Il file specificato dal parametro `nomefile` deve essere accessibile per la scrittura.
+    * @post I contatti verranno salvati nel file.
+    */
     @Override
     public void salvaRubrica(String nomefile) throws IOException {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(nomefile)))) {
-            pw.println("NOME;COGNOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL 3");
+            pw.println("COGNOME;NOME;NUMERO DI TELEFONO 1;NUMERO DI TELEFONO 2;NUMERO DI TELEFONO 3;EMAIL 1;EMAIL 2;EMAIL 3");
 
             for (Contatto c : contatti) {
                 pw.print(c.getCognome());

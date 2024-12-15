@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * 
  * @date December 07, 2024
  * 
- * @see Validatore
+ * @see ValidatoreStandard
  */
 public class Contatto implements Comparable<Contatto> {
 
@@ -40,7 +40,7 @@ public class Contatto implements Comparable<Contatto> {
     private  List<String> numTelefono; ///< Lista dei numeri di telefono del contatto.
     
     
-    private final Validatore validatore;
+    private final Validatore validatore;    ///<oggetto per verificare la validità dei dati inseriti.
 
     /**
      * @brief Costruttore della classe.
@@ -111,14 +111,17 @@ public class Contatto implements Comparable<Contatto> {
        return new ArrayList<>(this.email);
     }
 
-    /**
-     * @brief Associa una lista di email per il contatto.
-     * 
-     * @param[in] email la List di email da associare al contatto.
-     * 
-     * @pre email != null
-     * @post La lista email è associata correttamente al contatto.
-     */
+   /**
+    * @brief Imposta la lista di email per il contatto, validando ogni email prima di aggiungerla.
+    * Ogni email deve essere valida secondo le regole definite nel validatore, e non possono esserci più di 3 email.
+    * 
+    * @param[in] email La lista di email da impostare per il contatto.
+    * 
+    * @pre La lista di email deve contenere al massimo 3 indirizzi.
+    * @post La lista di email del contatto viene aggiornata con le nuove email valide.
+    * 
+    * @throws IllegalArgumentException Se una delle email non è valida o se il numero di email è maggiore di 3.
+    */
     public void setEmail(List<String> email) {
         for(String e : email) {
             if(!(validatore.validaEmail(e) && email.size() < 3)){
@@ -138,12 +141,15 @@ public class Contatto implements Comparable<Contatto> {
     }
 
     /**
-     * @brief Associa una lista di numeri di telefono per il contatto.
+     * @brief Imposta la lista di numeri di telefono per il contatto, validando ogni numero prima di aggiungerlo.
+     * Ogni numero di telefono deve essere valido secondo le regole definite nel validatore, e non possono esserci più di 3 numeri di telefono.
      * 
-     * @param[in] numTelefono La lista di numeri di telefono da associare al contatto.
+     * @param[in] numTelefono La lista di numeri di telefono da impostare per il contatto.
      * 
-     * @pre numTelefono != null
-     * @post La lista di numeri di telefono è associata correttamente al contatto.
+     * @pre La lista di numeri di telefono deve contenere al massimo 3 numeri.
+     * @post La lista di numeri di telefono del contatto viene aggiornata con i nuovi numeri validi.
+     * 
+     * @throws IllegalArgumentException Se uno dei numeri di telefono non è valido o se il numero di numeri di telefono è maggiore di 3.
      */
     public void setNumTelefono(List<String> numTelefono) {
         for(String n : numTelefono) {
@@ -170,30 +176,34 @@ public class Contatto implements Comparable<Contatto> {
     }
 
     /**
-     * @brief Aggiunge un indirizzo email alla lista.
-     * 
-     * In caso di email non valida, lancia una IllegalArgumentException per notificare l'utente
-     * 
-     * @param[in] email L'indirizzo email da aggiungere.
-     * 
-     * @pre email != null
-     * @post L'indirizzo email è aggiunto alla lista.
-     */
+    * @brief Aggiunge una nuova email alla lista di email del contatto, dopo averla validata.
+    * Se l'email non è valida, viene sollevata un'eccezione.
+    * 
+    * @param[in] email L'email da aggiungere al contatto.
+    * 
+    * @pre L'email deve essere valida secondo le regole definite nel validatore.
+    * @post L'email viene aggiunta alla lista di email del contatto se è valida.
+    * 
+    * @throws IllegalArgumentException Se l'email non è valida.
+    */
     public void aggiungiEmail(String email) {
         if(!validatore.validaEmail(email))
             throw new IllegalArgumentException("Inserire una mail valida!");
         this.email.add(email);
     }
 
-    /**
-     * @brief Confronta due contatti
-     * 
-     * @param[in] o L'altro contatto da confrontare.
-     * 
-     * @pre o != null
-     * @return Un valore negativo, zero o positivo in base al confronto alfabetico di nome e cognome.
-     * 
-     */
+   /**
+    * @brief Confronta due oggetti `Contatto` in base ai loro cognomi e, in caso di parità, ai loro nomi.
+    * Il confronto avviene in modo case-insensitive.
+    * Se entrambi i cognomi sono vuoti, il confronto avviene in base ai nomi.
+    * Se uno dei cognomi è vuoto, il contatto con il cognome non vuoto viene considerato maggiore.
+    * 
+    * @param[in] o Il contatto da confrontare con l'oggetto corrente.
+    * @return Un intero negativo, zero o positivo, a seconda che l'oggetto corrente sia minore, uguale o maggiore dell'oggetto passato come parametro.
+    * 
+    * @pre L'oggetto passato come parametro deve essere un'istanza della classe `Contatto`.
+    * @post Restituisce il risultato del confronto tra i cognomi, e se questi sono uguali, tra i nomi.
+    */
     @Override
     public int compareTo(Contatto o) {
         if (cognome.isEmpty() && o.getCognome().isEmpty()) {
@@ -211,15 +221,14 @@ public class Contatto implements Comparable<Contatto> {
     }
 
     /**
-     * @brief Verifica la correttezza sintattica dell'indirizzo email fornito.
-     * 
-     * L'indirizzo email deve contenere al suo interno il carattere "@" ed almeno un ".".
-     * 
-     * @param[in] email L'indirizzo email da validare.
-     * @return true se l'email è valida, false altrimenti.
-     */
-
-    
+    * @brief Restituisce una rappresentazione testuale del contatto sotto forma di una stringa
+    * contenente il cognome e il nome separati da uno spazio.
+    * 
+    * @return Una stringa che rappresenta il contatto nel formato "Cognome Nome".
+    * 
+    * @post Restituisce una rappresentazione leggibile del contatto utilizzata 
+    *       per visualizzarlo in una lista o in un'interfaccia utente.
+    */
     @Override
     public String toString() {
         return  getCognome()+ " " + getNome();
