@@ -101,7 +101,7 @@ public class RubricaViewController implements Initializable {
 
     @FXML
     private void cerca(ActionEvent event) {
-    String testoRicerca = barraRicerca.getText().trim(); // Recupera il testo della barra di ricerca.
+    String testoRicerca = barraRicerca.getText().trim();
     
     if (!testoRicerca.isEmpty()) {
         ObservableList<Contatto> result = this.rubrica.cercaContatto(testoRicerca);

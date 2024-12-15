@@ -105,9 +105,14 @@ public class Rubrica implements FileIO, GestoreContatti<Contatto>{
     @Override
     public ObservableList<Contatto> cercaContatto(String cerca) {
         ObservableList<Contatto> result = FXCollections.observableArrayList();
+        
+         String cercaLower = cerca.trim().toLowerCase();
 
         for (Contatto contatto : contatti) {
-            if (contatto.getNome().toLowerCase().contains(cerca.toLowerCase()) || contatto.getCognome().toLowerCase().contains(cerca.toLowerCase())) {
+            String nomeCognome = (contatto.getNome() + " " + contatto.getCognome()).toLowerCase();
+            String cognomeNome =(contatto.getCognome()+ " " + contatto.getNome()).toLowerCase();
+
+            if (contatto.getNome().toLowerCase().contains(cercaLower) || contatto.getCognome().toLowerCase().contains(cercaLower) || nomeCognome.contains(cercaLower) || cognomeNome.contains(cercaLower)) {
                 result.add(contatto);
             }
         }
