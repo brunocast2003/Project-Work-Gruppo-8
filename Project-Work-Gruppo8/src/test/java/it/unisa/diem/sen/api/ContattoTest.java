@@ -133,4 +133,31 @@ public class ContattoTest {
         assertEquals("example2@email.com", contatto1.getEmail().get(1));
         assertEquals("example3@email.com", contatto1.getEmail().get(2));
     }  
+    
+    public void testCompareTo(){
+        
+        Contatto c1 = new Contatto("Mario", "");
+        Contatto c2 = new Contatto("Anna", "");
+        assertTrue(c1.compareTo(c2) > 0, "Confronto tra cognomi vuoti non corretto");
+        
+        Contatto c3 = new Contatto("Mario", "");
+        Contatto c4 = new Contatto("Anna", "Rossi");
+        assertTrue(c3.compareTo(c4) > 0, "Primo cognome vuoto dovrebbe essere maggiore");
+        
+        Contatto c5 = new Contatto("Anna", "Rossi");
+        Contatto c6 = new Contatto("Mario", "");
+        assertTrue(c5.compareTo(c6) < 0, "Secondo cognome vuoto dovrebbe essere minore");
+        
+        Contatto c7 = new Contatto("Mario", "Rossi");
+        Contatto c8 = new Contatto("Anna", "Bianchi");
+        assertTrue(c7.compareTo(c8) > 0, "Confronto tra cognomi diversi non corretto");
+        
+        Contatto c9 = new Contatto("Anna", "Rossi");
+        Contatto c10 = new Contatto("Mario", "Rossi");
+        assertTrue(c9.compareTo(c10) < 0, "Confronto tra nomi con cognomi uguali non corretto");
+        
+        Contatto c11 = new Contatto("Anna", "Rossi");
+        Contatto c12 = new Contatto("Anna", "Rossi");
+        assertEquals(0, c11.compareTo(c12), "Confronto tra contatti identici non corretto");
+    }
 }
