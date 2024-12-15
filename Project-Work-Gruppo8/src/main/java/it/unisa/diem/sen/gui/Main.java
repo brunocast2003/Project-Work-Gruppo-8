@@ -42,8 +42,7 @@ public class Main extends Application{
         
         RubricaViewController controller = loader.getController();
         Rubrica rubrica = new Rubrica();
-        Contatto c = new Contatto("Mario","");
-        rubrica.aggiungiContatto(c);
+        
         controller.starter(rubrica);
         Scene scene = new Scene(root);
         
